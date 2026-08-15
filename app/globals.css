@@ -23,8 +23,13 @@
 --------------------------------------------------------------------------- */
 
 @theme {
-  --color-forest: #123b22;
-  --color-forest-deep: #0d351c;
+  /* Forest is rotated from the spec's 143deg to 130deg. The logo's darkest green
+     sits at 120deg and its wordmark at 86-92deg, so 143deg read as emerald against
+     a grass-green mark. 130deg also completes the ramp with botanical (101deg) and
+     botanical-light (86deg). Lightness and saturation are unchanged, so every
+     contrast ratio holds. */
+  --color-forest: #123b19;
+  --color-forest-deep: #0d3514;
   --color-botanical: #4f8f32;
   --color-botanical-light: #8fbe52;
   --color-wood: #8a4f25;
