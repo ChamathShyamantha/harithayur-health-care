@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
-import { Blob } from "@/components/ui/Blob";
 import { Enter } from "@/components/motion/Enter";
 
 export function PageHeader({
@@ -18,12 +17,6 @@ export function PageHeader({
 }) {
   return (
     <section className="relative isolate overflow-hidden pt-14 pb-16 md:pt-20 md:pb-24">
-      <Blob
-        variant="b"
-        drift
-        className="-left-40 -top-32 h-[32rem] w-[32rem] bg-warm-white"
-      />
-
       <Container>
         <div className="grid gap-y-8 lg:grid-cols-12 lg:gap-x-12">
           {/* Page headers sit above the fold, so they use the load entrance rather

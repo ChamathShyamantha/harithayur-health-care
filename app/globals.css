@@ -13,7 +13,7 @@
      - Accent imagery ......... .shape-leaf    (two opposite corners round)
      - Panels and cards ....... rounded-soft (28px) / rounded-plush (40px)
      - Interactive ............ rounded-pill
-     - Decoration ............. .shape-blob   (organic, never a circle)
+     - Decoration ............. the Gotu Kola vine, see VineField
    Sharp 90-degree corners are not used anywhere.
 
    Locks:
@@ -99,19 +99,12 @@ body {
   color: var(--color-forest-deep);
 }
 
-/* --- The botanical veil ---------------------------------------------------
-   A single fixed layer behind every page, so the ground has some tooth instead
-   of being flat colour. Two rules keep it from reading as wallpaper:
-
-   1. The leaf photograph is scaled to cover and never repeats. Tiling a macro
-      photograph shows its seams immediately.
-   2. It is fixed, not scrolling. Content passes over a still field, which costs
-      one composited layer for the whole site rather than repainting per section.
-
-   It sits at z-index -1 on a body pseudo-element, so it paints above the body
-   background and below all content. Sections with their own opaque background
-   (the footer, the forest panels, the tiles) cover it completely, which is why
-   it only ever tints the light ground and cannot touch any contrast ratio.
+/* --- Ground wash ----------------------------------------------------------
+   Three very soft colour pools so the ground is not one flat value. Fixed, so
+   content passes over a still field and the whole site costs one composited
+   layer rather than repainting per section. Sits below everything; any section
+   with its own opaque background covers it, so it cannot affect a contrast
+   ratio anywhere.
 -------------------------------------------------------------------------- */
 body::before {
   content: "";
@@ -124,10 +117,6 @@ body::before {
     radial-gradient(48% 38% at 90% 30%, rgba(143, 190, 82, 0.09), transparent 72%),
     radial-gradient(56% 36% at 38% 92%, rgba(14, 47, 20, 0.07), transparent 74%);
 }
-/* The photographic leaf veil is gone. Even contrast-stretched it only read as a
-   faint smudge, and the motif that belongs here is the dosha marks, which carry
-   meaning the page has already taught the visitor. See BotanicalField. */
-
 
 .display {
   font-family: var(--font-display);
@@ -146,50 +135,54 @@ body::before {
 }
 
 /* --- The vine -------------------------------------------------------------
-   One Gotu Kola stolon down each gutter, tiled rather than stretched. The tile
-   is a full sine period so copies join without a kink. Opacity is higher than a
-   filled motif would need, because thin strokes carry far less weight per pixel
-   and disappear before a solid shape would.
+   One Gotu Kola stolon down each gutter, tiled rather than stretched. Every tile
+   enters and exits at the same x with the same tangent, so copies join without a
+   kink; that fixed boundary is what lets the interior wander inward toward the
+   content and back out again. The image itself is set per route in VineField.
+
+   Opacity runs higher than a filled motif would need: thin strokes carry far
+   less weight per pixel and vanish long before a solid shape would.
 -------------------------------------------------------------------------- */
 .vine {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 300px;
-  background-image: url("/assets/gotu-kola-vine.svg");
+  width: 460px;
   background-repeat: repeat-y;
-  background-size: 300px 1200px;
+  background-size: 460px 2400px;
   opacity: 0.22;
 }
 
+/* The tile is drawn with its widest reach on the right, so the left copy is the
+   one that swings inward naturally and the right copy is mirrored to match. */
 .vine-left {
-  left: -70px;
+  left: -170px;
 }
 
-/* Mirrored, and pushed half a tile so the two sides never run in step. */
 .vine-right {
-  right: -70px;
+  right: -170px;
   transform: scaleX(-1);
-  background-position: 0 -600px;
+  /* Half a tile out of step, so the two sides never mirror each other exactly. */
+  background-position: 0 -1200px;
 }
 
 @media (min-width: 1280px) {
   .vine-left {
-    left: -10px;
+    left: -90px;
   }
 
   .vine-right {
-    right: -10px;
+    right: -90px;
   }
 }
 
 @media (min-width: 1700px) {
   .vine-left {
-    left: 3vw;
+    left: -20px;
   }
 
   .vine-right {
-    right: 3vw;
+    right: -20px;
   }
 }
 
@@ -210,16 +203,6 @@ body::before {
 /* Leaf: two opposite corners fully round, the other two barely touched. */
 .shape-leaf {
   border-radius: 46% 0.75rem 46% 0.75rem;
-}
-
-/* Organic decorative field. Values are deliberately far from 50% so it never
-   collapses into reading as a plain circle. */
-.shape-blob {
-  border-radius: 71% 29% 54% 46% / 38% 62% 38% 62%;
-}
-
-.shape-blob-alt {
-  border-radius: 28% 72% 66% 34% / 65% 32% 68% 35%;
 }
 
 /* --- Scroll reveal ------------------------------------------------------- */
@@ -287,24 +270,6 @@ body::before {
   }
 }
 
-/* Decorative fields drift slowly. Transform only, three elements on the page, and
-   the shapes are already organic so the motion reads as breathing rather than
-   sliding. Long enough that it is felt more than seen. */
-@keyframes blob-drift {
-  from {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  to {
-    transform: translate3d(1.5%, -2.5%, 0) scale(1.06);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .blob-drift {
-    animation: blob-drift 26s ease-in-out infinite alternate;
-    will-change: transform;
-  }
-}
 
 /* --- The aperture ---------------------------------------------------------
    The round motif is the whole page: a lens you look through. It opens on

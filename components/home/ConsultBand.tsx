@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
-import { Blob } from "@/components/ui/Blob";
 import { Reveal } from "@/components/motion/Reveal";
 import { siteConfig } from "@/data/site";
 
@@ -22,15 +21,6 @@ export function ConsultBand() {
             sizes="100vw"
             className="-z-10 object-cover opacity-[0.07] mix-blend-luminosity"
           />
-          <Blob
-            variant="a"
-            className="-right-24 -top-24 h-[26rem] w-[26rem] bg-botanical/25"
-          />
-          <Blob
-            variant="b"
-            className="-bottom-32 -left-20 h-[20rem] w-[20rem] bg-forest-deep/50"
-          />
-
           <div className="grid items-end gap-10 lg:grid-cols-12">
             <Reveal className="lg:col-span-7">
               <h2 className="display text-[clamp(2rem,4vw,3.25rem)] text-warm-white">

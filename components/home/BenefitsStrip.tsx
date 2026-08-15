@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Blob } from "@/components/ui/Blob";
 import { Reveal } from "@/components/motion/Reveal";
 
 /**
@@ -52,11 +51,6 @@ const TILES = [
 export function BenefitsStrip() {
   return (
     <section className="relative isolate overflow-hidden py-20 md:py-28">
-      <Blob
-        variant="b"
-        className="-right-48 top-32 h-[30rem] w-[30rem] bg-warm-white"
-      />
-
       <Container>
         <SectionHeading
           heading="Care that treats the whole person"
