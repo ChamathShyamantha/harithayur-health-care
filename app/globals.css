@@ -83,8 +83,12 @@ html {
   background: var(--color-sage);
 }
 
+/* No background on body. In the root stacking context a block-level background
+   paints AFTER negative z-index descendants, so a sage fill here covers any
+   background layer completely. That is exactly why the veil was invisible. The
+   ground colour lives on html instead, where it becomes the canvas and nothing
+   can paint over it. */
 body {
-  background: var(--color-sage);
   color: var(--color-text-dark);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -120,27 +124,10 @@ body::before {
     radial-gradient(48% 38% at 90% 30%, rgba(143, 190, 82, 0.09), transparent 72%),
     radial-gradient(56% 36% at 38% 92%, rgba(14, 47, 20, 0.07), transparent 74%);
 }
+/* The photographic leaf veil is gone. Even contrast-stretched it only read as a
+   faint smudge, and the motif that belongs here is the dosha marks, which carry
+   meaning the page has already taught the visitor. See BotanicalField. */
 
-/* The leaf itself, pre-composited.
-   The source photograph is very flat (stdev about 9 RGB), so at any opacity low
-   enough not to distract, its veining came out under 1 RGB of variation: present
-   in the maths, invisible on screen, and all it really did was tint the ground.
-   ground-veil.webp is that leaf stripped of colour, stretched, and soft-light
-   composited over sage once at build time. Since the veil only ever shows where
-   the sage ground shows, the blend never needed to happen at runtime. Painting a
-   plain image costs nothing per scroll frame; a fullscreen mix-blend-mode layer
-   would have re-blended the viewport on every one. */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image: url("/assets/ground-veil.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
 .display {
   font-family: var(--font-display);
