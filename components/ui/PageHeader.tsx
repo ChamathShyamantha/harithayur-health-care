@@ -20,14 +20,14 @@ export function PageHeader({
     <section className="relative isolate overflow-hidden pt-14 pb-16 md:pt-20 md:pb-24">
       <Blob
         variant="b"
-        className="-left-40 -top-32 h-[32rem] w-[32rem] bg-cream"
+        className="-left-40 -top-32 h-[32rem] w-[32rem] bg-warm-white"
       />
 
       <Container>
         <div className="grid gap-y-8 lg:grid-cols-12 lg:gap-x-12">
           <Reveal className="flex flex-col items-start gap-5 lg:col-span-7">
             {eyebrow ? (
-              <span className="eyebrow rounded-pill bg-cream px-4 py-2">
+              <span className="eyebrow rounded-pill bg-sage-deep px-4 py-2">
                 {eyebrow}
               </span>
             ) : null}

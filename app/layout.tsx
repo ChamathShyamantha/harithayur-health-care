@@ -46,7 +46,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       lang="en"
       className={`${newsreader.variable} ${geist.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col overflow-x-hidden bg-warm-white text-text-dark">
+      <body className="min-h-full flex flex-col overflow-x-hidden bg-sage text-text-dark">
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>

@@ -29,7 +29,7 @@ export default function HomePage() {
       <TrustBand />
       <BenefitsStrip />
 
-      <section className="border-b border-border-subtle py-20 md:py-28">
+      <section className="border-b border-sage-line py-20 md:py-28">
         <Container className="flex flex-col gap-14 md:gap-20">
           <SectionHeading
             eyebrow="Our Remedies"
@@ -42,7 +42,7 @@ export default function HomePage() {
 
       <HeritageBand />
 
-      <section className="border-b border-border-subtle py-20 md:py-28">
+      <section className="border-b border-sage-line py-20 md:py-28">
         <Container className="flex flex-col gap-14 md:gap-20">
           <SectionHeading
             eyebrow="Insights"

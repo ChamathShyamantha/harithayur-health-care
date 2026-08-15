@@ -45,7 +45,7 @@ export default function ContactPage() {
                 {contactDetails.map((item) => (
                   <div
                     key={item.label}
-                    className="flex flex-col gap-1.5 border-t border-border-subtle py-6"
+                    className="flex flex-col gap-1.5 border-t border-sage-line py-6"
                   >
                     <dt className="eyebrow">{item.label}</dt>
                     <dd className="display text-2xl text-forest-deep">
@@ -64,7 +64,7 @@ export default function ContactPage() {
                 ))}
               </dl>
 
-              <div className="flex flex-col items-start gap-4 border-t border-border-subtle pt-8">
+              <div className="flex flex-col items-start gap-4 border-t border-sage-line pt-8">
                 <p className="max-w-[38ch] text-sm leading-relaxed text-text-muted">
                   If you would rather talk it through, our practitioners answer
                   on WhatsApp during business hours.
@@ -75,7 +75,7 @@ export default function ContactPage() {
 
             <Reveal
               delay={0.1}
-              className="rounded-soft border border-border-subtle bg-cream p-6 md:p-10 lg:col-span-7"
+              className="rounded-soft border border-border-subtle bg-sage-deep p-6 md:p-10 lg:col-span-7"
             >
               <ConsultationForm />
             </Reveal>

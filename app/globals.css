@@ -34,10 +34,29 @@
   --color-botanical-light: #8fbe52;
   --color-wood: #8a4f25;
   --color-wood-warm: #b87842;
+  /* Surface ladder. The page used to be warm-white on cream, both at 95% lightness,
+     so there was no tonal step anywhere above the greens and every section read as
+     one flat white expanse. Sage gives the ground a mid-tone and lets warm-white do
+     what it should: mark raised surfaces. Hues sit at 95-105deg, inside the existing
+     86 / 101 / 130 green ramp, so nothing fights the logo.
+       sage-line  77%  hairlines and dividers
+       sage-deep  86%  recessed sections, chips, image beds
+       sage       91%  page ground
+       warm-white 95%  cards and panels, reads as raised */
+  --color-sage-line: #c3d0b9;
+  --color-sage-deep: #dce4d5;
+  --color-sage: #e8ede4;
   --color-cream: #f7f5ee;
   --color-warm-white: #fcfbf7;
   --color-text-dark: #16251a;
-  --color-text-muted: #687067;
+  /* Darkened from the spec's #687067. On the old 95%-lightness surfaces that value
+     scraped 4.94:1; against sage-deep it dropped to 3.93:1 and failed AA for body
+     copy. #586354 clears 4.84:1 on the darkest surface it ever sits on. */
+  --color-text-muted: #586354;
+  /* Small green text needs its own value. --color-botanical is 3.03:1 on sage-deep,
+     which fails AA at the 11px the eyebrow runs at. It stays as-is for fills and for
+     display-size text, where 3:1 is the bar. */
+  --color-botanical-ink: #3b6a25;
   --color-border-subtle: rgba(30, 60, 35, 0.12);
 
   --radius-soft: 1.75rem;
@@ -52,11 +71,11 @@
 
 html {
   scroll-behavior: smooth;
-  background: var(--color-warm-white);
+  background: var(--color-sage);
 }
 
 body {
-  background: var(--color-warm-white);
+  background: var(--color-sage);
   color: var(--color-text-dark);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -80,7 +99,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-botanical);
+  color: var(--color-botanical-ink);
 }
 
 /* --- Shape language ------------------------------------------------------ */

@@ -36,7 +36,7 @@ export default function AboutPage() {
 
       <section className="pb-4">
         <Container>
-          <div className="shape-capsule relative aspect-16/9 w-full overflow-hidden bg-cream md:aspect-21/9">
+          <div className="shape-capsule relative aspect-16/9 w-full overflow-hidden bg-sage-deep md:aspect-21/9">
             <Image
               src="/assets/about-heritage.webp"
               alt="Traditional Ayurvedic preparations arranged on a wooden apothecary shelf"
@@ -49,7 +49,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="border-b border-border-subtle py-20 md:py-28">
+      <section className="border-b border-sage-line py-20 md:py-28">
         <Container>
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-6">
@@ -76,7 +76,7 @@ export default function AboutPage() {
               <Reveal
                 key={item.label}
                 delay={index * 0.06}
-                className={`flex flex-col gap-2 border-t border-border-subtle py-8 ${
+                className={`flex flex-col gap-2 border-t border-sage-line py-8 ${
                   index % 2 === 1 ? "border-l pl-6" : "pr-6"
                 } ${index === 2 ? "lg:border-l lg:pl-6" : ""}`}
               >
@@ -94,12 +94,12 @@ export default function AboutPage() {
 
       <section
         id="heritage"
-        className="scroll-mt-24 border-b border-border-subtle py-20 md:py-28"
+        className="scroll-mt-24 border-b border-sage-line py-20 md:py-28"
       >
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="lg:col-span-6">
-              <div className="relative shape-leaf aspect-4/3 w-full overflow-hidden bg-cream">
+              <div className="relative shape-leaf aspect-4/3 w-full overflow-hidden bg-sage-deep">
                 <Image
                   src="/assets/blog-hela-wedakama.webp"
                   alt="Rain-wet tropical foliage and a traditional clay vessel"
@@ -127,10 +127,10 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="border-b border-border-subtle py-20 md:py-28">
+      <section className="border-b border-sage-line py-20 md:py-28">
         <Container>
           <div className="grid gap-12 md:grid-cols-2 md:gap-16">
-            <Reveal className="flex flex-col gap-4 border-t border-border-subtle pt-8">
+            <Reveal className="flex flex-col gap-4 border-t border-sage-line pt-8">
               <h2 className="display text-[clamp(1.75rem,2.8vw,2.25rem)] text-forest-deep">
                 To be a trusted leader in natural healthcare
               </h2>
@@ -141,7 +141,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal
               delay={0.1}
-              className="flex flex-col gap-4 border-t border-border-subtle pt-8"
+              className="flex flex-col gap-4 border-t border-sage-line pt-8"
             >
               <h2 className="display text-[clamp(1.75rem,2.8vw,2.25rem)] text-forest-deep">
                 Natural, safe and effective wellness

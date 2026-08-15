@@ -19,7 +19,7 @@ const variantStyles: Record<ButtonVariant, string> = {
     "border border-border-subtle bg-warm-white/70 text-forest-deep hover:border-botanical hover:text-forest",
   // For the forest-green panels.
   onDark:
-    "surface-dark bg-warm-white text-forest-deep hover:bg-cream",
+    "surface-dark bg-warm-white text-forest-deep hover:bg-sage-deep",
 };
 
 export function Button({

@@ -29,7 +29,7 @@ export function SectionHeading({
           className={`eyebrow rounded-pill px-4 py-2 ${
             tone === "dark"
               ? "bg-warm-white/10 text-botanical-light"
-              : "bg-cream text-botanical"
+              : "bg-sage-deep text-botanical-ink"
           }`}
         >
           {eyebrow}

@@ -37,7 +37,7 @@ export function Navbar() {
             <Link
               href="/products"
               aria-label="Search remedies"
-              className="focus-ring flex h-10 w-10 items-center justify-center rounded-full text-forest-deep transition-colors duration-200 hover:bg-cream"
+              className="focus-ring flex h-10 w-10 items-center justify-center rounded-full text-forest-deep transition-colors duration-200 hover:bg-sage-deep"
             >
               <MagnifyingGlass size={17} aria-hidden />
             </Link>

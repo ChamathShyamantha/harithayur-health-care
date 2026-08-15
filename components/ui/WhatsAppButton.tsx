@@ -17,7 +17,7 @@ const variantStyles: Record<WhatsAppButtonVariant, string> = {
     "border border-border-subtle bg-warm-white/70 text-forest-deep hover:border-botanical hover:text-forest rounded-pill px-6 py-3",
   text: "text-forest-deep hover:text-botanical underline underline-offset-4 decoration-1",
   onDark:
-    "surface-dark bg-warm-white text-forest-deep hover:bg-cream rounded-pill px-6 py-3",
+    "surface-dark bg-warm-white text-forest-deep hover:bg-sage-deep rounded-pill px-6 py-3",
 };
 
 export function WhatsAppButton({

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -77,7 +77,7 @@ export function MobileMenu() {
         onClick={() => setOpen(true)}
         aria-label="Open menu"
         aria-expanded={open}
-        className="focus-ring flex h-10 w-10 items-center justify-center rounded-full text-forest-deep transition-colors duration-200 hover:bg-cream"
+        className="focus-ring flex h-10 w-10 items-center justify-center rounded-full text-forest-deep transition-colors duration-200 hover:bg-sage-deep"
       >
         <List size={22} aria-hidden />
       </button>
@@ -98,7 +98,7 @@ export function MobileMenu() {
                 type="button"
                 onClick={close}
                 aria-label="Close menu"
-                className="focus-ring flex h-10 w-10 items-center justify-center rounded-full text-forest-deep transition-colors duration-200 hover:bg-cream"
+                className="focus-ring flex h-10 w-10 items-center justify-center rounded-full text-forest-deep transition-colors duration-200 hover:bg-sage-deep"
               >
                 <X size={20} aria-hidden />
               </button>
@@ -114,7 +114,7 @@ export function MobileMenu() {
                     onClick={() => setOpen(false)}
                     aria-current={active ? "page" : undefined}
                     className={`focus-ring display rounded-soft px-4 py-3 text-3xl transition-colors duration-200 ${
-                      active ? "bg-cream text-forest" : "text-forest-deep hover:bg-cream/70"
+                      active ? "bg-sage-deep text-forest" : "text-forest-deep hover:bg-sage-deep/70"
                     }`}
                   >
                     {item.label}

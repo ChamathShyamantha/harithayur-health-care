@@ -22,7 +22,7 @@ export function InsightCard({
         href={href}
         tabIndex={-1}
         aria-hidden
-        className={`relative overflow-hidden bg-cream ${
+        className={`relative overflow-hidden bg-sage-deep ${
           isLead ? "shape-leaf aspect-4/3" : "shape-arch aspect-4/5"
         }`}
       >
@@ -36,7 +36,7 @@ export function InsightCard({
       </Link>
 
       <div className="flex flex-col items-start gap-4">
-        <span className="eyebrow rounded-pill bg-cream px-4 py-2">
+        <span className="eyebrow rounded-pill bg-sage-deep px-4 py-2">
           {article.category}
         </span>
         <h3
@@ -57,7 +57,7 @@ export function InsightCard({
         {/* Presentational: duplicates the heading link, kept for visual affordance. */}
         <span
           aria-hidden
-          className="inline-flex items-center gap-2 rounded-pill bg-cream px-5 py-2.5 text-[0.8125rem] font-semibold text-forest-deep transition-all duration-200 group-hover:gap-3 group-hover:bg-forest group-hover:text-warm-white"
+          className="inline-flex items-center gap-2 rounded-pill bg-sage-deep px-5 py-2.5 text-[0.8125rem] font-semibold text-forest-deep transition-all duration-200 group-hover:gap-3 group-hover:bg-forest group-hover:text-warm-white"
         >
           Read Article
           <ArrowRight size={15} />

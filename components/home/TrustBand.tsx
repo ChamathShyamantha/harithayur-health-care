@@ -18,7 +18,7 @@ export function TrustBand() {
             <Reveal
               key={item.label}
               delay={index * 0.07}
-              className="flex items-center gap-3 rounded-pill bg-cream px-6 py-4 md:px-7"
+              className="flex items-center gap-3 rounded-pill bg-sage-deep px-6 py-4 md:px-7"
             >
               <dt className="display text-2xl leading-none text-forest md:text-[1.75rem]">
                 {item.value}

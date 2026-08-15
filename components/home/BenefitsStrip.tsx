@@ -13,7 +13,7 @@ export function BenefitsStrip() {
     <section className="relative isolate overflow-hidden py-20 md:py-28">
       <Blob
         variant="b"
-        className="-right-48 top-32 h-[30rem] w-[30rem] bg-cream"
+        className="-right-48 top-32 h-[30rem] w-[30rem] bg-warm-white"
       />
 
       <Container>
@@ -60,7 +60,7 @@ export function BenefitsStrip() {
 
           <Reveal
             delay={0.14}
-            className="flex min-h-[240px] flex-col justify-end gap-3 rounded-plush bg-cream p-8 md:p-10 lg:col-span-5"
+            className="flex min-h-[240px] flex-col justify-end gap-3 rounded-plush bg-sage-deep p-8 md:p-10 lg:col-span-5"
           >
             <h3 className="display text-2xl text-forest-deep md:text-3xl">
               Trusted by thousands

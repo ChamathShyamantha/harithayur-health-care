@@ -26,7 +26,7 @@ export function ArticleDetail({ article }: { article: Article }) {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="relative mt-12 aspect-16/9 w-full overflow-hidden shape-arch bg-cream">
+          <div className="relative mt-12 aspect-16/9 w-full overflow-hidden shape-arch bg-sage-deep">
             <Image
               src={article.image}
               alt={article.title}
@@ -55,7 +55,7 @@ export function ArticleDetail({ article }: { article: Article }) {
             ))}
           </div>
 
-          <div className="mt-16 flex flex-col items-start gap-4 border-t border-border-subtle pt-10">
+          <div className="mt-16 flex flex-col items-start gap-4 border-t border-sage-line pt-10">
             <h2 className="display text-2xl text-forest-deep">
               Questions about what you just read?
             </h2>

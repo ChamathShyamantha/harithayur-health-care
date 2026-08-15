@@ -9,7 +9,7 @@ import { Reveal } from "@/components/motion/Reveal";
  */
 export function HeritageBand() {
   return (
-    <section className="curve-top relative bg-cream py-20 md:py-28">
+    <section className="curve-top relative bg-sage-deep py-20 md:py-28">
       <Container>
         <div className="relative">
           <div className="shape-capsule relative aspect-16/9 w-full overflow-hidden bg-warm-white md:aspect-21/9">

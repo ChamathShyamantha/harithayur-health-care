@@ -20,7 +20,7 @@ export function ProductDetail({ product }: { product: Product }) {
 
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-6">
-            <div className="relative aspect-4/5 w-full overflow-hidden shape-arch bg-cream lg:sticky lg:top-24">
+            <div className="relative aspect-4/5 w-full overflow-hidden shape-arch bg-sage-deep lg:sticky lg:top-24">
               <Image
                 src={product.image}
                 alt={product.name}
@@ -54,7 +54,7 @@ export function ProductDetail({ product }: { product: Product }) {
                 {product.benefits.map((benefit) => (
                   <li
                     key={benefit}
-                    className="border-t border-border-subtle py-3.5 text-sm text-text-dark"
+                    className="border-t border-sage-line py-3.5 text-sm text-text-dark"
                   >
                     {benefit}
                   </li>
@@ -75,7 +75,7 @@ export function ProductDetail({ product }: { product: Product }) {
                 {product.howToUse.map((step) => (
                   <li
                     key={step}
-                    className="flex gap-4 border-t border-border-subtle pt-3.5 text-sm text-text-dark"
+                    className="flex gap-4 border-t border-sage-line pt-3.5 text-sm text-text-dark"
                   >
                     {step}
                   </li>
@@ -83,7 +83,7 @@ export function ProductDetail({ product }: { product: Product }) {
               </ol>
             </Reveal>
 
-            <Reveal className="rounded-soft border border-border-subtle bg-cream p-7 md:p-9">
+            <Reveal className="rounded-soft border border-border-subtle bg-sage-deep p-7 md:p-9">
               <h2 className="display mb-3 text-2xl text-forest-deep">
                 Ayurvedic philosophy
               </h2>

@@ -1,4 +1,4 @@
-﻿import { Product } from "@/types";
+import { Product } from "@/types";
 import { ProductCard } from "@/components/products/ProductCard";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { Reveal } from "@/components/motion/Reveal";
@@ -10,7 +10,7 @@ import { Reveal } from "@/components/motion/Reveal";
 export function ProductGrid({ products }: { products: Product[] }) {
   if (products.length === 0) {
     return (
-      <div className="flex flex-col items-start gap-5 rounded-plush border border-border-subtle bg-cream px-8 py-16">
+      <div className="flex flex-col items-start gap-5 rounded-plush border border-border-subtle bg-sage-deep px-8 py-16">
         <h3 className="display text-3xl text-forest-deep">No remedies to show yet</h3>
         <p className="max-w-[46ch] text-sm leading-relaxed text-text-muted">
           Our formulations are being prepared. Message our Ayurvedic experts and

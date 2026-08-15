@@ -24,7 +24,7 @@ export function ProductCard({
           href={href}
           tabIndex={-1}
           aria-hidden
-          className="shape-leaf relative aspect-square overflow-hidden bg-cream"
+          className="shape-leaf relative aspect-square overflow-hidden bg-sage-deep"
         >
           <Image
             src={product.image}
@@ -67,7 +67,7 @@ export function ProductCard({
         href={href}
         tabIndex={-1}
         aria-hidden
-        className="shape-arch relative aspect-4/5 overflow-hidden bg-cream"
+        className="shape-arch relative aspect-4/5 overflow-hidden bg-sage-deep"
       >
         <Image
           src={product.image}
@@ -98,7 +98,7 @@ export function ProductCard({
           {product.benefits.map((benefit) => (
             <li
               key={benefit}
-              className="rounded-pill bg-cream px-3.5 py-2 text-[0.8125rem] text-forest"
+              className="rounded-pill bg-sage-deep px-3.5 py-2 text-[0.8125rem] text-forest"
             >
               {benefit}
             </li>

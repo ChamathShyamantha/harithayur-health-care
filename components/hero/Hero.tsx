@@ -10,7 +10,7 @@ export function Hero() {
     <section className="relative isolate overflow-hidden pt-10 pb-20 md:pt-14 md:pb-28">
       <Blob
         variant="a"
-        className="-left-40 top-10 h-[34rem] w-[34rem] bg-cream md:-left-24"
+        className="-left-40 top-10 h-[34rem] w-[34rem] bg-warm-white md:-left-24"
       />
 
       <Container>
@@ -52,7 +52,7 @@ export function Hero() {
               aria-hidden
               className="shape-leaf absolute -right-6 -top-8 h-[78%] w-[86%] bg-botanical-light/45 md:-right-10"
             />
-            <div className="shape-arch relative mx-auto aspect-4/5 w-full max-h-[62vh] max-w-[30rem] overflow-hidden bg-cream shadow-[0_24px_60px_rgba(18,59,34,0.16)] lg:max-w-none">
+            <div className="shape-arch relative mx-auto aspect-4/5 w-full max-h-[62vh] max-w-[30rem] overflow-hidden bg-sage-deep shadow-[0_24px_60px_rgba(18,59,34,0.16)] lg:max-w-none">
               <Image
                 src="/assets/hero-ayurvedic-mortar.webp"
                 alt="Traditional wooden mortar and pestle with fresh Ayurvedic herbs, roots and botanicals"

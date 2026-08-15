@@ -27,8 +27,8 @@ export function NavLinks() {
             aria-current={active ? "page" : undefined}
             className={`focus-ring rounded-pill px-3.5 py-2 text-[0.8125rem] font-medium transition-colors duration-200 ${
               active
-                ? "bg-cream text-forest"
-                : "text-text-dark hover:bg-cream/70 hover:text-forest"
+                ? "bg-sage-deep text-forest"
+                : "text-text-dark hover:bg-sage-deep/70 hover:text-forest"
             }`}
           >
             {item.label}
