@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 /**
  * Scroll reveal. Justification: content enters in reading order, so the eye is led
@@ -9,11 +9,14 @@ import { ReactNode } from "react";
  * can leave a section blank if scripts fail to run. This is a Server Component, so it
  * also costs no client JS.
  *
- * `delay` is accepted for call-site readability but is not applied: with a view
- * timeline the stagger comes from each element's own scroll position, not a timer.
+ * `delay` staggers siblings that sit at the same height, where the scroll position
+ * alone would otherwise animate them all at once. It shifts where in the element's
+ * own scroll pass the animation begins, so it is expressed as a fraction rather than
+ * a duration: 0.1 is a tenth of the way further in.
  */
 export function Reveal({
   children,
+  delay = 0,
   className = "",
   as: Component = "div",
 }: {
@@ -23,5 +26,16 @@ export function Reveal({
   className?: string;
   as?: "div" | "li" | "section" | "article";
 }) {
-  return <Component className={`reveal ${className}`}>{children}</Component>;
+  return (
+    <Component
+      className={`reveal ${className}`}
+      style={
+        delay
+          ? ({ "--reveal-from": `${Math.round(delay * 55)}%` } as CSSProperties)
+          : undefined
+      }
+    >
+      {children}
+    </Component>
+  );
 }

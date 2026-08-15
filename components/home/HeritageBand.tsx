@@ -18,7 +18,7 @@ export function HeritageBand() {
               alt="Herbs being ground by hand in a stone mortar on a worn wooden workbench"
               fill
               sizes="100vw"
-              className="object-cover"
+              className="img-settle object-cover"
             />
           </div>
 

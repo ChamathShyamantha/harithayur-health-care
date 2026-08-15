@@ -39,6 +39,26 @@ If all four pass, run the rest in any order you like.
 Files 07, 08 and 09 sit in one row on the page, so run them in the same session and
 they will match each other better.
 
+### Benefit tiles, 10 to 12
+
+| # | Prompt file | Save the result as | Aspect | Tile |
+|---|---|---|---|---|
+| 10 | `10-benefit-personalized-care.md` | `benefit-personalized.webp` | 3:2 | Personalized care |
+| 11 | `11-benefit-trusted.md` | `benefit-trusted.webp` | 3:2 | Trusted by thousands |
+| 12 | `12-benefit-sustainable.md` | `benefit-sustainable.webp` | 3:2 | Sustainable wellness |
+
+**You probably want two of these three, not all three.** The tile grid currently runs
+one photograph, one solid forest panel and two plain tiles. Filling every cell with a
+photograph makes the section busy and removes the contrast the solid panel provides.
+Two photographs, one solid panel and one plain tile is the balance to aim for.
+
+If you only generate two, 11 and 12 are the ones to do: "Personalized care" is the
+tile currently carrying the solid forest fill, and that fill is worth keeping.
+
+These sit behind white text with a dark overlay, so each prompt asks for a calm
+region where the words will land. Text legibility comes from the overlay, not from
+the photograph, so do not worry if they look bright on their own.
+
 ---
 
 ## If text still appears

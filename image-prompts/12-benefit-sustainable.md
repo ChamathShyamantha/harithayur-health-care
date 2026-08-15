@@ -1,0 +1,7 @@
+A warm, calm, natural-light photograph for a Sri Lankan herbal wellness brand. Colours limited to: warm off-white, soft cream, deep forest green, fresh leaf green, and warm reddish-brown wood. No black, no grey, no blue, no purple. Soft diffused daylight from the upper left, gentle shadows, low contrast, nothing harsh or dramatic. Materials are matte and handmade: warm cream ceramic, pale aged wood, fresh green leaves, plain amber glass, undyed cream cloth. Photorealistic, shot on a medium format camera, shallow but controlled depth of field. Not an illustration, not a 3D render, not a painting.
+
+A shallow woven basket of freshly cut green herbs resting on pale wooden boards, seen from above at a slight angle. Stems and leaves spill loosely over one edge of the basket. Beside it lie a pair of simple garden shears with warm wooden handles and a folded undyed cream cloth. Fine soil still clings to a few of the stems. Soft daylight. The sense is a small harvest just brought in, nothing industrial.
+
+Keep the basket to one side with open wooden surface across the rest of the frame. This becomes the background of a text panel, so a good portion of the frame must stay quiet enough for words to sit over it. Landscape composition in a 3:2 ratio.
+
+Absolutely no text anywhere in this image. No letters, no words, no numbers, no writing, no printing, no signage, no watermark, no logo, no symbols, no handwriting. Every surface is blank and unmarked. This is a pure photograph with nothing written on any object or anywhere in the frame.

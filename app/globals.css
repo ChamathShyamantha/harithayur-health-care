@@ -157,9 +157,80 @@ body {
     .reveal {
       animation: reveal-in linear both;
       animation-timeline: view();
-      animation-range: entry 0% cover 24%;
+      /* --reveal-from staggers siblings that share a row: a later start means the
+         element begins further through the same scroll pass. */
+      animation-range: entry var(--reveal-from, 0%) cover 24%;
     }
   }
+}
+
+/* Entrance for above-the-fold content, which never scrolls into view and so cannot
+   use a view timeline. Plain time-based keyframes: no observer, no script. If the
+   reduced-motion query fails to match, the rule never applies and content is simply
+   visible, which is the correct fallback. */
+@media (prefers-reduced-motion: no-preference) {
+  .enter {
+    animation: reveal-in 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--enter-delay, 0ms);
+  }
+}
+
+/* Images settle out of a slight overscale as they arrive. Only applied to images
+   with no hover transform, since an animation on transform would override one. */
+@keyframes img-settle {
+  from {
+    transform: scale(1.07);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .img-settle {
+      animation: img-settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 45%;
+    }
+  }
+
+  .img-settle-load {
+    animation: img-settle 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+/* Decorative fields drift slowly. Transform only, three elements on the page, and
+   the shapes are already organic so the motion reads as breathing rather than
+   sliding. Long enough that it is felt more than seen. */
+@keyframes blob-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(1.5%, -2.5%, 0) scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .blob-drift {
+    animation: blob-drift 26s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+}
+
+/* Underline that draws in from the left on hover. */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 350ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.link-underline:hover,
+.link-underline:focus-visible {
+  background-size: 100% 1px;
 }
 
 /* Section that curves up over the one before it. */

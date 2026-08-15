@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
 import { Blob } from "@/components/ui/Blob";
-import { Reveal } from "@/components/motion/Reveal";
+import { Enter } from "@/components/motion/Enter";
 
 export function PageHeader({
   eyebrow,
@@ -20,12 +20,15 @@ export function PageHeader({
     <section className="relative isolate overflow-hidden pt-14 pb-16 md:pt-20 md:pb-24">
       <Blob
         variant="b"
+        drift
         className="-left-40 -top-32 h-[32rem] w-[32rem] bg-warm-white"
       />
 
       <Container>
         <div className="grid gap-y-8 lg:grid-cols-12 lg:gap-x-12">
-          <Reveal className="flex flex-col items-start gap-5 lg:col-span-7">
+          {/* Page headers sit above the fold, so they use the load entrance rather
+              than a scroll reveal that would never fire. */}
+          <Enter className="flex flex-col items-start gap-5 lg:col-span-7">
             {eyebrow ? (
               <span className="eyebrow rounded-pill bg-sage-deep px-4 py-2">
                 {eyebrow}
@@ -39,11 +42,11 @@ export function PageHeader({
                 {subheading}
               </p>
             ) : null}
-          </Reveal>
+          </Enter>
 
           {description || children ? (
-            <Reveal
-              delay={0.12}
+            <Enter
+              delay={160}
               className="flex flex-col items-start gap-6 lg:col-span-5 lg:self-end lg:pb-2"
             >
               {description ? (
@@ -52,7 +55,7 @@ export function PageHeader({
                 </p>
               ) : null}
               {children}
-            </Reveal>
+            </Enter>
           ) : null}
         </div>
       </Container>

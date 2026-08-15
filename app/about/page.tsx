@@ -43,7 +43,7 @@ export default function AboutPage() {
               fill
               priority
               sizes="100vw"
-              className="object-cover"
+              className="img-settle-load object-cover"
             />
           </div>
         </Container>

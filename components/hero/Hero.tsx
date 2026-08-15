@@ -3,36 +3,39 @@ import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Blob } from "@/components/ui/Blob";
-import { Reveal } from "@/components/motion/Reveal";
+import { Enter } from "@/components/motion/Enter";
 
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden pt-10 pb-20 md:pt-14 md:pb-28">
       <Blob
         variant="a"
+        drift
         className="-left-40 top-10 h-[34rem] w-[34rem] bg-warm-white md:-left-24"
       />
 
       <Container>
         <div className="grid items-center gap-y-16 lg:grid-cols-12 lg:gap-x-14">
+          {/* Entrance runs in the order the hero argues in: claim, then support,
+              then the action. */}
           <div className="flex flex-col items-start gap-7 lg:col-span-6">
-            <Reveal>
+            <Enter>
               <h1 className="display text-[clamp(2.75rem,5vw,4.25rem)] text-forest-deep">
                 Ancient wisdom
                 <br />
                 for{" "}
                 <em className="pb-1 italic text-botanical">modern wellness</em>
               </h1>
-            </Reveal>
+            </Enter>
 
-            <Reveal delay={0.1}>
+            <Enter delay={140}>
               <p className="max-w-[42ch] text-[0.9375rem] leading-relaxed text-text-muted md:text-base">
                 Personalized Ayurvedic care, crafted by nature and rooted in
                 centuries of healing traditions.
               </p>
-            </Reveal>
+            </Enter>
 
-            <Reveal delay={0.18}>
+            <Enter delay={260}>
               <div className="flex flex-wrap items-center gap-4">
                 <Button href="/products" variant="primary">
                   Explore Remedies
@@ -42,10 +45,10 @@ export function Hero() {
                   Our Philosophy
                 </Button>
               </div>
-            </Reveal>
+            </Enter>
           </div>
 
-          <Reveal delay={0.12} className="relative lg:col-span-6">
+          <Enter delay={180} className="relative lg:col-span-6">
             {/* Arch-masked hero image with a petal-shaped field behind it, offset
                 so the two shapes read as layered rather than stacked. */}
             <div
@@ -59,7 +62,7 @@ export function Hero() {
                 fill
                 priority
                 sizes="(min-width: 1024px) 46vw, 90vw"
-                className="object-cover"
+                className="img-settle-load object-cover"
               />
             </div>
 
@@ -70,7 +73,7 @@ export function Hero() {
                 Years of Ayurvedic trust
               </span>
             </div>
-          </Reveal>
+          </Enter>
         </div>
       </Container>
     </section>
