@@ -5,9 +5,50 @@ import { Blob } from "@/components/ui/Blob";
 import { Reveal } from "@/components/motion/Reveal";
 
 /**
- * Four items, four cells, unequal spans. Two cells carry real visual weight
- * (photography, a solid forest field) so it never reads as four identical boxes.
+ * Four items, four cells, unequal spans, every cell carrying a photograph.
+ *
+ * Two treatments rather than one, so the grid does not read as four identical dark
+ * cards: the two tall cells sink under a forest gradient and carry pale text, the two
+ * short cells lift under a warm scrim and carry dark text. Each photograph was shot
+ * with the copy area left deliberately empty, so the scrim only has to do a little
+ * work and the image stays legible underneath.
  */
+const TILES = [
+  {
+    title: "Holistic healing",
+    body: "Treating the root cause, not just the symptoms.",
+    image: "/assets/blog-hela-wedakama.webp",
+    span: "lg:col-span-7",
+    tone: "dark" as const,
+    position: "50% 50%",
+  },
+  {
+    title: "Personalized care",
+    body: "Every individual is unique, so is our approach.",
+    image: "/assets/benefit-personalized.webp",
+    span: "lg:col-span-5",
+    tone: "dark" as const,
+    // Hands sit centre-left in the source; nudge them up into the clear zone.
+    position: "45% 35%",
+  },
+  {
+    title: "Trusted by thousands",
+    body: "Join our community of health-conscious individuals.",
+    image: "/assets/benefit-trusted.webp",
+    span: "lg:col-span-5",
+    tone: "light" as const,
+    position: "50% 72%",
+  },
+  {
+    title: "Sustainable wellness",
+    body: "Balanced living for a healthier body, mind and soul.",
+    image: "/assets/benefit-sustainable.webp",
+    span: "lg:col-span-7",
+    tone: "light" as const,
+    position: "22% 40%",
+  },
+];
+
 export function BenefitsStrip() {
   return (
     <section className="relative isolate overflow-hidden py-20 md:py-28">
@@ -24,63 +65,53 @@ export function BenefitsStrip() {
         />
 
         <div className="grid gap-4 lg:grid-cols-12">
-          <Reveal className="relative flex min-h-[360px] flex-col justify-end overflow-hidden rounded-plush p-8 md:p-10 lg:col-span-7">
-            <Image
-              src="/assets/blog-hela-wedakama.webp"
-              alt=""
-              fill
-              sizes="(min-width: 1024px) 58vw, 92vw"
-              className="object-cover"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-0 bg-linear-to-t from-forest-deep/85 via-forest-deep/40 to-transparent"
-            />
-            <div className="relative flex flex-col gap-3">
-              <h3 className="display text-3xl text-warm-white md:text-4xl">
-                Holistic healing
-              </h3>
-              <p className="max-w-[38ch] text-sm leading-relaxed text-warm-white/80">
-                Treating the root cause, not just the symptoms.
-              </p>
-            </div>
-          </Reveal>
-
-          <Reveal
-            delay={0.08}
-            className="surface-dark flex min-h-[360px] flex-col justify-end gap-3 rounded-plush bg-forest p-8 md:p-10 lg:col-span-5"
-          >
-            <h3 className="display text-3xl text-warm-white md:text-4xl">
-              Personalized care
-            </h3>
-            <p className="max-w-[34ch] text-sm leading-relaxed text-warm-white/75">
-              Every individual is unique, so is our approach.
-            </p>
-          </Reveal>
-
-          <Reveal
-            delay={0.14}
-            className="flex min-h-[240px] flex-col justify-end gap-3 rounded-plush bg-sage-deep p-8 md:p-10 lg:col-span-5"
-          >
-            <h3 className="display text-2xl text-forest-deep md:text-3xl">
-              Trusted by thousands
-            </h3>
-            <p className="max-w-[34ch] text-sm leading-relaxed text-text-muted">
-              Join our community of health-conscious individuals.
-            </p>
-          </Reveal>
-
-          <Reveal
-            delay={0.2}
-            className="flex min-h-[240px] flex-col justify-end gap-3 rounded-plush border border-border-subtle bg-warm-white p-8 md:p-10 lg:col-span-7"
-          >
-            <h3 className="display text-2xl text-forest-deep md:text-3xl">
-              Sustainable wellness
-            </h3>
-            <p className="max-w-[40ch] text-sm leading-relaxed text-text-muted">
-              Balanced living for a healthier body, mind and soul.
-            </p>
-          </Reveal>
+          {TILES.map((tile, index) => {
+            const dark = tile.tone === "dark";
+            return (
+              <Reveal
+                key={tile.title}
+                delay={index * 0.06}
+                className={`relative flex flex-col justify-end overflow-hidden rounded-plush p-8 md:p-10 ${tile.span} ${
+                  dark ? "min-h-[380px]" : "min-h-[320px]"
+                }`}
+              >
+                <Image
+                  src={tile.image}
+                  alt=""
+                  fill
+                  sizes="(min-width: 1024px) 58vw, 92vw"
+                  style={{ objectPosition: tile.position }}
+                  className="object-cover"
+                />
+                <div
+                  aria-hidden
+                  /* Solid where the text sits, clearing quickly above it so the
+                     photograph is actually visible rather than washed flat. */
+                  className={`absolute inset-0 ${
+                    dark
+                      ? "bg-linear-to-t from-forest-deep/92 from-5% via-forest-deep/45 via-38% to-transparent to-62%"
+                      : "bg-linear-to-t from-warm-white from-5% via-warm-white/90 via-32% to-transparent to-55%"
+                  }`}
+                />
+                <div className="relative flex flex-col gap-3">
+                  <h3
+                    className={`display text-3xl md:text-4xl ${
+                      dark ? "text-warm-white" : "text-forest-deep"
+                    }`}
+                  >
+                    {tile.title}
+                  </h3>
+                  <p
+                    className={`max-w-[38ch] text-sm leading-relaxed ${
+                      dark ? "text-warm-white/80" : "text-text-muted"
+                    }`}
+                  >
+                    {tile.body}
+                  </p>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </Container>
     </section>
