@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --color-forest: #123b22;
+  --color-forest-deep: #0d351c;
+  --color-botanical: #4f8f32;
+  --color-botanical-light: #8fbe52;
+  --color-wood: #8a4f25;
+  --color-wood-warm: #b87842;
+  --color-cream: #f7f5ee;
+  --color-warm-white: #fcfbf7;
+  --color-text-dark: #16251a;
+  --color-text-muted: #687067;
+  --color-border-subtle: rgba(30, 60, 35, 0.12);
+
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", serif;
+  --font-sans: var(--font-inter), "Inter", sans-serif;
+}
+
+@theme inline {
+  --color-forest: var(--color-forest);
+  --color-forest-deep: var(--color-forest-deep);
+  --color-botanical: var(--color-botanical);
+  --color-botanical-light: var(--color-botanical-light);
+  --color-wood: var(--color-wood);
+  --color-wood-warm: var(--color-wood-warm);
+  --color-cream: var(--color-cream);
+  --color-warm-white: var(--color-warm-white);
+  --color-text-dark: var(--color-text-dark);
+  --color-text-muted: var(--color-text-muted);
+  --color-border-subtle: var(--color-border-subtle);
+
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-warm-white);
+  color: var(--color-text-dark);
+  font-family: var(--font-sans);
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
