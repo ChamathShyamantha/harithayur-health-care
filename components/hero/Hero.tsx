@@ -8,19 +8,25 @@ import { Enter } from "@/components/motion/Enter";
 export function Hero() {
   return (
     <section className="relative isolate overflow-hidden pt-10 pb-20 md:pt-14 md:pb-28">
+      {/* Two fields at different depths. The near one sits inside the left column so
+          the empty side of the composition still carries weight. */}
       <Blob
         variant="a"
         drift
-        className="-left-40 top-10 h-[34rem] w-[34rem] bg-warm-white md:-left-24"
+        className="-left-52 top-4 h-[36rem] w-[36rem] bg-warm-white md:-left-32"
+      />
+      <Blob
+        variant="b"
+        className="left-[2%] bottom-[-11rem] hidden h-[26rem] w-[26rem] bg-sage-deep/45 lg:block"
       />
 
       <Container>
-        <div className="grid items-center gap-y-16 lg:grid-cols-12 lg:gap-x-14">
+        <div className="grid items-center gap-y-16 lg:grid-cols-12 lg:gap-x-12">
           {/* Entrance runs in the order the hero argues in: claim, then support,
               then the action. */}
           <div className="flex flex-col items-start gap-7 lg:col-span-6">
             <Enter>
-              <h1 className="display text-[clamp(2.75rem,5vw,4.25rem)] text-forest-deep">
+              <h1 className="display text-[clamp(3rem,5.6vw,4.75rem)] text-forest-deep">
                 Ancient wisdom
                 <br />
                 for{" "}
@@ -29,7 +35,7 @@ export function Hero() {
             </Enter>
 
             <Enter delay={140}>
-              <p className="max-w-[42ch] text-[0.9375rem] leading-relaxed text-text-muted md:text-base">
+              <p className="max-w-[40ch] text-base leading-relaxed text-text-muted md:text-lg">
                 Personalized Ayurvedic care, crafted by nature and rooted in
                 centuries of healing traditions.
               </p>
@@ -49,29 +55,38 @@ export function Hero() {
           </div>
 
           <Enter delay={180} className="relative lg:col-span-6">
-            {/* Arch-masked hero image with a petal-shaped field behind it, offset
-                so the two shapes read as layered rather than stacked. */}
-            <div
-              aria-hidden
-              className="shape-leaf absolute -right-6 -top-8 h-[78%] w-[86%] bg-botanical-light/45 md:-right-10"
-            />
-            <div className="shape-arch relative mx-auto aspect-4/5 w-full max-h-[62vh] max-w-[30rem] overflow-hidden bg-sage-deep shadow-[0_24px_60px_rgba(18,59,34,0.16)] lg:max-w-none">
-              <Image
-                src="/assets/hero-ayurvedic-mortar.webp"
-                alt="Traditional wooden mortar and pestle with fresh Ayurvedic herbs, roots and botanicals"
-                fill
-                priority
-                sizes="(min-width: 1024px) 46vw, 90vw"
-                className="img-settle-load object-cover"
+            <div className="relative mx-auto w-full max-w-[27rem] lg:max-w-none">
+              {/* Outline arch echoing the image, offset behind it. Gives the column
+                  depth without another photograph competing for attention. */}
+              <div
+                aria-hidden
+                className="shape-arch absolute -left-4 -top-4 h-full w-full border border-sage-line md:-left-6 md:-top-6"
               />
-            </div>
+              {/* Petal field, drifting slowly so the layers breathe against each
+                  other rather than sitting still. */}
+              <div
+                aria-hidden
+                className="shape-leaf blob-drift absolute -right-5 -top-6 h-[74%] w-[82%] bg-botanical-light/45 md:-right-8"
+              />
 
-            {/* Circular badge breaking the arch's edge. */}
-            <div className="absolute -bottom-4 left-0 flex h-28 w-28 flex-col items-center justify-center rounded-full bg-forest text-warm-white shadow-[0_14px_36px_rgba(18,59,34,0.28)] md:left-4 md:h-32 md:w-32">
-              <span className="display text-3xl md:text-4xl">25+</span>
-              <span className="max-w-[7rem] px-2 text-center text-[0.625rem] leading-tight text-warm-white/80">
-                Years of Ayurvedic trust
-              </span>
+              <div className="shape-arch relative aspect-4/5 max-h-[56vh] w-full overflow-hidden bg-sage-deep shadow-[0_24px_60px_rgba(18,59,34,0.16)]">
+                <Image
+                  src="/assets/hero-ayurvedic-mortar.webp"
+                  alt="Traditional wooden mortar and pestle with fresh Ayurvedic herbs, roots and botanicals"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 46vw, 90vw"
+                  className="img-settle-load object-cover"
+                />
+              </div>
+
+              {/* Badge sits on the arch's edge, bridging the two columns. */}
+              <div className="absolute -bottom-5 -left-3 flex h-28 w-28 flex-col items-center justify-center rounded-full bg-forest text-warm-white shadow-[0_14px_36px_rgba(18,59,34,0.28)] md:-left-8 md:h-32 md:w-32">
+                <span className="display text-3xl md:text-4xl">25+</span>
+                <span className="max-w-[7rem] px-2 text-center text-[0.625rem] leading-tight text-warm-white/80">
+                  Years of Ayurvedic trust
+                </span>
+              </div>
             </div>
           </Enter>
         </div>
