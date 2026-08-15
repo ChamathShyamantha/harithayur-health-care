@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { FacebookLogo, InstagramLogo, YoutubeLogo } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/ui/Container";
@@ -52,7 +52,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={item.label}
-                    className="focus-ring flex h-10 w-10 items-center justify-center rounded-full border border-warm-white/20 text-warm-white/80 transition-colors duration-200 hover:border-botanical-light hover:text-botanical-light"
+                    className="focus-ring flex h-10 w-10 items-center justify-center rounded-full border border-warm-white/20 text-warm-white/80 transition-colors duration-200 hover:border-lichen hover:text-lichen"
                   >
                     <Icon size={16} aria-hidden />
                   </a>
@@ -62,13 +62,13 @@ export function Footer() {
           </div>
 
           <nav aria-label="Footer navigation">
-            <h2 className="eyebrow mb-6 text-botanical-light">Explore</h2>
+            <h2 className="eyebrow mb-6 text-lichen">Explore</h2>
             <ul className="flex flex-col gap-3">
               {footerQuickLinks.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="focus-ring inline-block rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-botanical-light"
+                    className="focus-ring inline-block rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-lichen"
                   >
                     {item.label}
                   </Link>
@@ -78,13 +78,13 @@ export function Footer() {
           </nav>
 
           <nav aria-label="Company links">
-            <h2 className="eyebrow mb-6 text-botanical-light">Company</h2>
+            <h2 className="eyebrow mb-6 text-lichen">Company</h2>
             <ul className="flex flex-col gap-3">
               {footerCompanyLinks.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="focus-ring inline-block rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-botanical-light"
+                    className="focus-ring inline-block rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-lichen"
                   >
                     {item.label}
                   </Link>
@@ -94,19 +94,19 @@ export function Footer() {
           </nav>
 
           <div className="flex flex-col items-start gap-4">
-            <h2 className="eyebrow text-botanical-light">Consultation</h2>
+            <h2 className="eyebrow text-lichen">Consultation</h2>
             <p className="display text-2xl text-warm-white">
               Talk to our Ayurvedic experts
             </p>
             <a
               href={`tel:${siteConfig.contact.whatsappNumber}`}
-              className="focus-ring rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-botanical-light"
+              className="focus-ring rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-lichen"
             >
               {siteConfig.contact.whatsappDisplay}
             </a>
             <a
               href={`mailto:${siteConfig.contact.email}`}
-              className="focus-ring rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-botanical-light"
+              className="focus-ring rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-lichen"
             >
               {siteConfig.contact.email}
             </a>
@@ -124,13 +124,13 @@ export function Footer() {
           <div className="flex items-center gap-6">
             <Link
               href="/privacy-policy"
-              className="focus-ring rounded-pill transition-colors duration-200 hover:text-botanical-light"
+              className="focus-ring rounded-pill transition-colors duration-200 hover:text-lichen"
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms-of-service"
-              className="focus-ring rounded-pill transition-colors duration-200 hover:text-botanical-light"
+              className="focus-ring rounded-pill transition-colors duration-200 hover:text-lichen"
             >
               Terms of Service
             </Link>

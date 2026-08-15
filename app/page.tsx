@@ -6,7 +6,8 @@ import { HeritageBand } from "@/components/home/HeritageBand";
 import { ConsultBand } from "@/components/home/ConsultBand";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ProductGrid } from "@/components/products/ProductGrid";
+import { RemedyMedallions } from "@/components/home/RemedyMedallions";
+import { DoshaWheel } from "@/components/home/DoshaWheel";
 import { InsightsGrid } from "@/components/insights/InsightsGrid";
 import { products } from "@/data/products";
 import { articles } from "@/data/articles";
@@ -29,6 +30,8 @@ export default function HomePage() {
       <TrustBand />
       <BenefitsStrip />
 
+      <DoshaWheel />
+
       <section className="border-b border-sage-line py-20 md:py-28">
         <Container className="flex flex-col gap-14 md:gap-20">
           <SectionHeading
@@ -36,7 +39,7 @@ export default function HomePage() {
             heading="Curated for your wellness journey"
             description="Thoughtfully crafted formulations using the finest natural ingredients, each one made to be matched to a person rather than sold off a shelf."
           />
-          <ProductGrid products={products} />
+          <RemedyMedallions products={products} />
         </Container>
       </section>
 

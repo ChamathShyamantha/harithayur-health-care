@@ -28,7 +28,7 @@ export function SectionHeading({
         <span
           className={`eyebrow rounded-pill px-4 py-2 ${
             tone === "dark"
-              ? "bg-warm-white/10 text-botanical-light"
+              ? "bg-warm-white/10 text-lichen"
               : "bg-sage-deep text-botanical-ink"
           }`}
         >

@@ -2,31 +2,24 @@ import Image from "next/image";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { Blob } from "@/components/ui/Blob";
 import { Enter } from "@/components/motion/Enter";
 
+/**
+ * The aperture. Arriving on the site opens a circle onto the workbench, which is
+ * the round motif doing actual work rather than being a shape applied to a photo.
+ * A ring of type turns around it, slowly enough to read as breathing.
+ *
+ * The hero asset is a 4:5 portrait with the mortar centred, so a circular crop
+ * loses nothing.
+ */
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden pt-10 pb-20 md:pt-14 md:pb-28">
-      {/* Two fields at different depths. The near one sits inside the left column so
-          the empty side of the composition still carries weight. */}
-      <Blob
-        variant="a"
-        drift
-        className="-left-52 top-4 h-[36rem] w-[36rem] bg-warm-white md:-left-32"
-      />
-      <Blob
-        variant="b"
-        className="left-[2%] bottom-[-11rem] hidden h-[26rem] w-[26rem] bg-sage-deep/45 lg:block"
-      />
-
+    <section className="relative isolate overflow-hidden pt-6 pb-10 md:pt-10 md:pb-14">
       <Container>
-        <div className="grid items-center gap-y-16 lg:grid-cols-12 lg:gap-x-12">
-          {/* Entrance runs in the order the hero argues in: claim, then support,
-              then the action. */}
+        <div className="grid items-center gap-y-14 lg:grid-cols-12 lg:gap-x-12">
           <div className="flex flex-col items-start gap-7 lg:col-span-6">
             <Enter>
-              <h1 className="display text-[clamp(3rem,5.6vw,4.75rem)] text-forest-deep">
+              <h1 className="display text-[clamp(2.5rem,4.6vw,4.25rem)] text-forest-deep">
                 Ancient wisdom
                 <br />
                 for{" "}
@@ -35,7 +28,7 @@ export function Hero() {
             </Enter>
 
             <Enter delay={140}>
-              <p className="max-w-[40ch] text-base leading-relaxed text-text-muted md:text-lg">
+              <p className="max-w-[40ch] text-base leading-relaxed text-text-muted md:text-[1.0625rem]">
                 Personalized Ayurvedic care, crafted by nature and rooted in
                 centuries of healing traditions.
               </p>
@@ -54,49 +47,80 @@ export function Hero() {
             </Enter>
           </div>
 
-          <Enter delay={180} className="relative lg:col-span-6">
-            <div className="relative mx-auto w-full max-w-[27rem] lg:max-w-none">
-              {/* Outline arch echoing the image, offset behind it. Gives the column
-                  depth without another photograph competing for attention. */}
-              <div
+          <div className="relative lg:col-span-6">
+            {/* Sized against the viewport, not the column: 58vh keeps the aperture, the
+                  headline and the credential row inside one screen together. */}
+              <div className="relative mx-auto aspect-square w-full max-w-[min(46rem,64vh)] lg:mr-0 lg:ml-auto lg:w-[118%] lg:max-w-[min(52rem,66vh)]">
+              {/* Turning rings. Two speeds in opposite directions so the motion
+                  reads as depth rather than a single spinning object. */}
+              <svg
+                viewBox="0 0 400 400"
+                className="pointer-events-none absolute inset-0 h-full w-full"
                 aria-hidden
-                className="shape-arch absolute -left-4 -top-4 h-full w-full border border-sage-line md:-left-6 md:-top-6"
-              />
-              {/* Petal field, drifting slowly so the layers breathe against each
-                  other rather than sitting still. */}
-              <div
-                aria-hidden
-                className="shape-leaf blob-drift absolute -right-5 -top-6 h-[74%] w-[82%] bg-botanical-light/45 md:-right-8"
-              />
-
-              {/* The arch reads as a doorway rather than a frame: the scene drifts
-                  slowly inside it, warm light spills in from the upper left, leaf
-                  shadows move across it, and an inner shadow gives the opening
-                  depth. All decorative layers are transform and opacity only. */}
-              <div className="shape-arch threshold relative aspect-4/5 max-h-[56vh] w-full overflow-hidden bg-sage-deep shadow-[0_24px_60px_rgba(18,59,34,0.16)]">
-                <div className="ambient absolute inset-0">
-                  <Image
-                    src="/assets/hero-ayurvedic-mortar.webp"
-                    alt="Traditional wooden mortar and pestle with fresh Ayurvedic herbs, roots and botanicals"
-                    fill
-                    priority
-                    sizes="(min-width: 1024px) 46vw, 90vw"
-                    className="object-cover"
+              >
+                <defs>
+                  <path
+                    id="ring-path"
+                    d="M200,200 m-171,0 a171,171 0 1,1 342,0 a171,171 0 1,1 -342,0"
+                    fill="none"
                   />
-                </div>
-                <div aria-hidden className="dapple absolute -inset-8" />
-                <div aria-hidden className="light-spill absolute inset-0" />
+                </defs>
+                <circle
+                  cx="200"
+                  cy="200"
+                  r="192"
+                  fill="none"
+                  stroke="var(--color-sage-line)"
+                  strokeWidth="1"
+                />
+                <circle
+                  className="ring-spin-slow"
+                  cx="200"
+                  cy="200"
+                  r="178"
+                  fill="none"
+                  stroke="var(--color-botanical)"
+                  strokeWidth="1"
+                  strokeDasharray="2 12"
+                  opacity="0.5"
+                />
+                <g className="ring-spin">
+                  <text
+                    fill="var(--color-botanical-ink)"
+                    style={{
+                      fontSize: "11px",
+                      letterSpacing: "0.34em",
+                      textTransform: "uppercase",
+                    }}
+                  >
+                    <textPath href="#ring-path" startOffset="0%">
+                      Hela Wedakama · ground by hand · Sri Lanka · consultation led ·
+                    </textPath>
+                  </text>
+                </g>
+              </svg>
+
+              {/* The aperture itself. */}
+              <div className="absolute inset-[9%] overflow-hidden rounded-full bg-sage-deep shadow-[0_30px_70px_rgba(14,47,20,0.22)]">
+                <Image
+                  src="/assets/hero-ayurvedic-mortar.webp"
+                  alt="A traditional wooden mortar and pestle holding freshly ground green herbs, with roots and leaves alongside"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 52vw, 92vw"
+                  className="aperture object-cover"
+                />
               </div>
 
-              {/* Badge sits on the arch's edge, bridging the two columns. */}
-              <div className="absolute -bottom-5 -left-3 flex h-28 w-28 flex-col items-center justify-center rounded-full bg-forest text-warm-white shadow-[0_14px_36px_rgba(18,59,34,0.28)] md:-left-8 md:h-32 md:w-32">
-                <span className="display text-3xl md:text-4xl">25+</span>
-                <span className="max-w-[7rem] px-2 text-center text-[0.625rem] leading-tight text-warm-white/80">
-                  Years of Ayurvedic trust
+              {/* Badge riding the rim. */}
+              <div className="absolute bottom-[4%] left-0 flex h-24 w-24 flex-col items-center justify-center rounded-full bg-forest text-warm-white shadow-[0_14px_36px_rgba(8,33,12,0.3)] md:h-28 md:w-28">
+                <span className="display text-3xl">25+</span>
+                <span className="px-3 text-center text-[0.625rem] leading-tight text-warm-white/80">
+                  Years of practice
                 </span>
               </div>
             </div>
-          </Enter>
+          </div>
         </div>
       </Container>
     </section>

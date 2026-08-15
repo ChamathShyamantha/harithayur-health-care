@@ -48,3 +48,6 @@ next-env.d.ts
 # original full-size image generations, kept locally; the build uses the
 # optimised WebP files in public/assets
 /design/source-images
+
+# retired skills, kept locally
+/skills-disabled

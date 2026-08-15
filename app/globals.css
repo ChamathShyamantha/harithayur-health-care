@@ -28,10 +28,16 @@
      a grass-green mark. 130deg also completes the ramp with botanical (101deg) and
      botanical-light (86deg). Lightness and saturation are unchanged, so every
      contrast ratio holds. */
-  --color-forest: #123b19;
-  --color-forest-deep: #0d3514;
+  /* Deepened from 15%/13% lightness to 12%/8%, same 130deg hue. The greens were
+     sitting too close to the mid-tones to read as forest shade; the extra range
+     is what makes the palette feel like a place rather than a tint. */
+  --color-forest: #0e2f14;
+  --color-forest-deep: #08210c;
   --color-botanical: #4f8f32;
   --color-botanical-light: #8fbe52;
+  /* Pale botanical, hue 88deg, inside the logo's own 86-92deg range. For accents
+     and small text on the dark surfaces only: it fails contrast on sage. */
+  --color-lichen: #b9d89a;
   --color-wood: #8a4f25;
   --color-wood-warm: #b87842;
   /* Surface ladder. The page used to be warm-white on cream, both at 95% lightness,
@@ -287,6 +293,113 @@ body {
   }
 }
 
+/* --- The aperture ---------------------------------------------------------
+   The round motif is the whole page: a lens you look through. It opens on
+   arrival, it frames every remedy, and it draws the dosha wheel. Everything
+   below is transform, opacity, clip-path or stroke, so it stays cheap.
+-------------------------------------------------------------------------- */
+
+@keyframes aperture-open {
+  from {
+    clip-path: circle(0% at 50% 48%);
+  }
+  to {
+    clip-path: circle(75% at 50% 48%);
+  }
+}
+
+.aperture {
+  clip-path: circle(75% at 50% 48%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .aperture {
+    animation: aperture-open 1.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+/* Ring of type circling the aperture. */
+@keyframes ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ring-spin {
+    animation: ring-spin 54s linear infinite;
+    transform-origin: 50% 50%;
+  }
+
+  .ring-spin-slow {
+    animation: ring-spin 96s linear infinite reverse;
+    transform-origin: 50% 50%;
+  }
+}
+
+/* Dosha arcs draw themselves as the wheel scrolls in. */
+@keyframes arc-draw {
+  from {
+    stroke-dashoffset: var(--arc-len, 400);
+  }
+  to {
+    stroke-dashoffset: var(--arc-gap, 120);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .arc {
+      animation: arc-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 42%;
+    }
+  }
+}
+
+/* Medallions rise and settle out of a slight overscale. */
+@keyframes medallion-in {
+  from {
+    opacity: 0;
+    transform: translateY(34px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .medallion {
+      animation: medallion-in linear both;
+      animation-timeline: view();
+      animation-range: entry var(--medallion-from, 0%) cover 30%;
+    }
+  }
+}
+
+/* Slow vertical drift tied to scroll, for full-bleed media. */
+@keyframes parallax-rise {
+  from {
+    transform: translate3d(0, 5%, 0) scale(1.1);
+  }
+  to {
+    transform: translate3d(0, -5%, 0) scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .parallax {
+      animation: parallax-rise linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+      will-change: transform;
+    }
+  }
+}
+
 /* Underline that draws in from the left on hover. */
 .link-underline {
   background-image: linear-gradient(currentColor, currentColor);
@@ -320,7 +433,7 @@ body {
 
 /* Dark surfaces retheme the ring so it stays visible. */
 .surface-dark {
-  --focus-ring: var(--color-botanical-light);
+  --focus-ring: var(--color-lichen);
 }
 
 .skip-link {
