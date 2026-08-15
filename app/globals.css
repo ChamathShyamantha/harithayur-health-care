@@ -343,6 +343,118 @@ body::before {
   }
 }
 
+/* --- Credential marks -----------------------------------------------------
+   Idle motion on the four trust-band icons. Each mark moves the way the thing
+   it depicts actually moves, so the row reads as four living details rather
+   than four copies of one wiggle: the plant rocks from its base, the leaf
+   swings from where its stem would attach, the lotus opens and closes, and the
+   hand-heart beats.
+
+   Durations are 4.7 / 5.3 / 6.1 / 7.3s — deliberately non-harmonic, so the four
+   never fall into step and start reading as one mechanical pulse. Negative
+   delays drop each one in mid-phase so they are already out of sync on load.
+
+   Amplitudes are small in degrees but these are 19px glyphs, so a few degrees
+   is all it takes to be legible. Transform only, so it stays on the compositor.
+-------------------------------------------------------------------------- */
+
+/* Rocking from the soil line, the way a stem moves in air. */
+@keyframes mark-grow {
+  from {
+    transform: rotate(-4deg) scaleY(0.98);
+  }
+  to {
+    transform: rotate(4deg) scaleY(1.03);
+  }
+}
+
+/* A pendulum hung from the petiole, not a spin about the centre. */
+@keyframes mark-swing {
+  from {
+    transform: rotate(-9deg);
+  }
+  to {
+    transform: rotate(9deg);
+  }
+}
+
+/* Opening and closing. Lineage, so it breathes rather than fidgets. */
+@keyframes mark-bloom {
+  from {
+    transform: scale(0.97);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+/* Two-stage beat, then rest — the shape of an actual pulse. */
+@keyframes mark-beat {
+  0%,
+  55%,
+  100% {
+    transform: scale(1);
+  }
+  8% {
+    transform: scale(1.14);
+  }
+  16% {
+    transform: scale(1.02);
+  }
+  24% {
+    transform: scale(1.09);
+  }
+  38% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mark-grow,
+  .mark-swing,
+  .mark-bloom,
+  .mark-beat {
+    animation-iteration-count: infinite;
+  }
+
+  .mark-grow {
+    /* Base of the glyph: rocking about the centre would read as a shrug. */
+    transform-origin: 50% 92%;
+    animation-name: mark-grow;
+    animation-duration: 6.1s;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+    animation-direction: alternate;
+    animation-delay: -2.2s;
+  }
+
+  .mark-swing {
+    /* Where the stem meets the blade, lower left of the Phosphor leaf. */
+    transform-origin: 26% 80%;
+    animation-name: mark-swing;
+    animation-duration: 4.7s;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+    animation-direction: alternate;
+    animation-delay: -0.9s;
+  }
+
+  .mark-bloom {
+    transform-origin: 50% 55%;
+    animation-name: mark-bloom;
+    animation-duration: 7.3s;
+    animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+    animation-direction: alternate;
+    animation-delay: -3.6s;
+  }
+
+  .mark-beat {
+    transform-origin: 50% 55%;
+    animation-name: mark-beat;
+    animation-duration: 5.3s;
+    animation-timing-function: ease-out;
+    animation-delay: -1.5s;
+  }
+}
+
 /* Medallions rise and settle out of a slight overscale. */
 @keyframes medallion-in {
   from {
