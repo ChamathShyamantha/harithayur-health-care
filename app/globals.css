@@ -75,8 +75,11 @@
   --font-sans: var(--font-geist), system-ui, -apple-system, sans-serif;
 }
 
+/* No scroll-behavior: smooth here. It makes the viewport glide to a target rather
+   than stop where the wheel left it, which reads as the page drifting on its own
+   after you stop scrolling. Anchor jumps land instantly instead, which is the
+   lesser cost. */
 html {
-  scroll-behavior: smooth;
   background: var(--color-sage);
 }
 
@@ -118,16 +121,22 @@ body::before {
     radial-gradient(56% 36% at 38% 92%, rgba(14, 47, 20, 0.07), transparent 74%);
 }
 
+/* The leaf itself, pre-composited.
+   The source photograph is very flat (stdev about 9 RGB), so at any opacity low
+   enough not to distract, its veining came out under 1 RGB of variation: present
+   in the maths, invisible on screen, and all it really did was tint the ground.
+   ground-veil.webp is that leaf stripped of colour, stretched, and soft-light
+   composited over sage once at build time. Since the veil only ever shows where
+   the sage ground shows, the blend never needed to happen at runtime. Painting a
+   plain image costs nothing per scroll frame; a fullscreen mix-blend-mode layer
+   would have re-blended the viewport on every one. */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  /* Tuning dial. Below about 0.07 the leaf is mathematically present but not
-     perceptible; above about 0.14 it starts competing with body copy. */
-  opacity: 0.095;
-  background-image: url("/assets/texture-botanical.webp");
+  background-image: url("/assets/ground-veil.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -166,10 +175,6 @@ body::after {
 /* Leaf: two opposite corners fully round, the other two barely touched. */
 .shape-leaf {
   border-radius: 46% 0.75rem 46% 0.75rem;
-}
-
-.shape-leaf-flip {
-  border-radius: 0.75rem 46% 0.75rem 46%;
 }
 
 /* Organic decorative field. Values are deliberately far from 50% so it never
@@ -262,74 +267,6 @@ body::after {
 @media (prefers-reduced-motion: no-preference) {
   .blob-drift {
     animation: blob-drift 26s ease-in-out infinite alternate;
-    will-change: transform;
-  }
-}
-
-/* --- Threshold ------------------------------------------------------------
-   The hero arch is meant to read as a doorway you look through, not a frame
-   around a picture. Three cues do that work: an inner shadow so the opening
-   has depth, warm light spilling in from one side, and dappled leaf-light
-   moving slowly across the scene the way it would through a shopfront.
--------------------------------------------------------------------------- */
-
-/* Depth at the opening. Kept off the top-left so it reads as light entering
-   from that side rather than a uniform vignette. */
-.threshold {
-  box-shadow:
-    inset 0 -70px 90px -40px rgba(13, 53, 20, 0.55),
-    inset 26px 0 70px -40px rgba(13, 53, 20, 0.4),
-    inset -26px 0 70px -40px rgba(13, 53, 20, 0.3);
-}
-
-/* Warm daylight falling in from the upper left. */
-.light-spill {
-  background-image: radial-gradient(
-    72% 58% at 12% 4%,
-    rgba(252, 251, 247, 0.42),
-    rgba(252, 251, 247, 0.12) 42%,
-    transparent 72%
-  );
-}
-
-/* Sunlight broken up by foliage. Four soft pools rather than a flat wash. */
-.dapple {
-  background-image:
-    radial-gradient(34% 26% at 16% 10%, rgba(252, 251, 247, 0.5), transparent 70%),
-    radial-gradient(26% 20% at 58% 6%, rgba(252, 251, 247, 0.34), transparent 72%),
-    radial-gradient(24% 18% at 86% 26%, rgba(252, 251, 247, 0.26), transparent 72%),
-    radial-gradient(30% 24% at 38% 72%, rgba(143, 190, 82, 0.16), transparent 74%);
-}
-
-@keyframes dapple-shift {
-  from {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.8;
-  }
-  to {
-    transform: translate3d(-2.5%, 1.5%, 0) scale(1.1);
-    opacity: 1;
-  }
-}
-
-/* Very slow push on the scene itself, like light moving through a room. */
-@keyframes ambient-breathe {
-  from {
-    transform: scale(1.02);
-  }
-  to {
-    transform: scale(1.09);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .dapple {
-    animation: dapple-shift 34s ease-in-out infinite alternate;
-    will-change: transform;
-  }
-
-  .ambient {
-    animation: ambient-breathe 40s ease-in-out infinite alternate;
     will-change: transform;
   }
 }
@@ -447,20 +384,6 @@ body::after {
       will-change: transform;
     }
   }
-}
-
-/* Underline that draws in from the left on hover. */
-.link-underline {
-  background-image: linear-gradient(currentColor, currentColor);
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  background-size: 0% 1px;
-  transition: background-size 350ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.link-underline:hover,
-.link-underline:focus-visible {
-  background-size: 100% 1px;
 }
 
 /* Section that curves up over the one before it. */
