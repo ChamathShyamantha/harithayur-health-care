@@ -145,6 +145,54 @@ body::before {
   color: var(--color-botanical-ink);
 }
 
+/* --- The vine -------------------------------------------------------------
+   One Gotu Kola stolon down each gutter, tiled rather than stretched. The tile
+   is a full sine period so copies join without a kink. Opacity is higher than a
+   filled motif would need, because thin strokes carry far less weight per pixel
+   and disappear before a solid shape would.
+-------------------------------------------------------------------------- */
+.vine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  background-image: url("/assets/gotu-kola-vine.svg");
+  background-repeat: repeat-y;
+  background-size: 300px 1200px;
+  opacity: 0.22;
+}
+
+.vine-left {
+  left: -70px;
+}
+
+/* Mirrored, and pushed half a tile so the two sides never run in step. */
+.vine-right {
+  right: -70px;
+  transform: scaleX(-1);
+  background-position: 0 -600px;
+}
+
+@media (min-width: 1280px) {
+  .vine-left {
+    left: -10px;
+  }
+
+  .vine-right {
+    right: -10px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .vine-left {
+    left: 3vw;
+  }
+
+  .vine-right {
+    right: 3vw;
+  }
+}
+
 /* --- Shape language ------------------------------------------------------ */
 
 /* Cathedral arch. The top half is a true semicircle, so the radius has to be

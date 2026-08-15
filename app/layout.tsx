@@ -4,7 +4,7 @@ import { Geist, Newsreader } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/footer/Footer";
-import { BotanicalField } from "@/components/ui/BotanicalField";
+import { VineField } from "@/components/ui/VineField";
 import { siteConfig } from "@/data/site";
 
 // Newsreader carries the heritage register: Ayurveda's authority is textual, and an
@@ -51,7 +51,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
-        <BotanicalField />
+        <VineField />
         <Navbar />
         <main id="main-content" className="flex-1">
           {children}
