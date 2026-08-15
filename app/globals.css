@@ -219,6 +219,74 @@ body {
   }
 }
 
+/* --- Threshold ------------------------------------------------------------
+   The hero arch is meant to read as a doorway you look through, not a frame
+   around a picture. Three cues do that work: an inner shadow so the opening
+   has depth, warm light spilling in from one side, and dappled leaf-light
+   moving slowly across the scene the way it would through a shopfront.
+-------------------------------------------------------------------------- */
+
+/* Depth at the opening. Kept off the top-left so it reads as light entering
+   from that side rather than a uniform vignette. */
+.threshold {
+  box-shadow:
+    inset 0 -70px 90px -40px rgba(13, 53, 20, 0.55),
+    inset 26px 0 70px -40px rgba(13, 53, 20, 0.4),
+    inset -26px 0 70px -40px rgba(13, 53, 20, 0.3);
+}
+
+/* Warm daylight falling in from the upper left. */
+.light-spill {
+  background-image: radial-gradient(
+    72% 58% at 12% 4%,
+    rgba(252, 251, 247, 0.42),
+    rgba(252, 251, 247, 0.12) 42%,
+    transparent 72%
+  );
+}
+
+/* Sunlight broken up by foliage. Four soft pools rather than a flat wash. */
+.dapple {
+  background-image:
+    radial-gradient(34% 26% at 16% 10%, rgba(252, 251, 247, 0.5), transparent 70%),
+    radial-gradient(26% 20% at 58% 6%, rgba(252, 251, 247, 0.34), transparent 72%),
+    radial-gradient(24% 18% at 86% 26%, rgba(252, 251, 247, 0.26), transparent 72%),
+    radial-gradient(30% 24% at 38% 72%, rgba(143, 190, 82, 0.16), transparent 74%);
+}
+
+@keyframes dapple-shift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: translate3d(-2.5%, 1.5%, 0) scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Very slow push on the scene itself, like light moving through a room. */
+@keyframes ambient-breathe {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.09);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dapple {
+    animation: dapple-shift 34s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  .ambient {
+    animation: ambient-breathe 40s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+}
+
 /* Underline that draws in from the left on hover. */
 .link-underline {
   background-image: linear-gradient(currentColor, currentColor);

@@ -39,6 +39,27 @@ If all four pass, run the rest in any order you like.
 Files 07, 08 and 09 sit in one row on the page, so run them in the same session and
 they will match each other better.
 
+### Hero threshold, 13
+
+| # | Prompt file | Save the result as | Aspect | Masked into |
+|---|---|---|---|---|
+| 13 | `13-hero-threshold.md` | `hero-threshold.webp` | 4:5 tall | arch |
+
+**This is the one that changes how the site feels on arrival.** The arch in the
+hero is shaped like a doorway, so what sits inside it decides whether a visitor
+looks *at* a product or *through* an entrance into the shop. A still-life gives
+the first. An interior with real depth gives the second.
+
+The prompt asks for three things that carry most of the effect, so do not trim
+them: a foreground that is close and out of focus, a light source on one side
+casting a visible shaft, and dust or steam drifting in that light. Those are what
+read as air, warmth and smell. The code supplies the doorway depth, the light
+spill and the moving leaf shadows, but it cannot invent atmosphere that is not in
+the photograph.
+
+Once this file lands, tell me and I will point the hero at it. Until then the
+hero uses the existing mortar shot, which works but reads as a still-life.
+
 ### Benefit tiles, 10 to 12
 
 | # | Prompt file | Save the result as | Aspect | Tile |

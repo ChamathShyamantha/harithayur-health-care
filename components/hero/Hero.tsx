@@ -69,15 +69,23 @@ export function Hero() {
                 className="shape-leaf blob-drift absolute -right-5 -top-6 h-[74%] w-[82%] bg-botanical-light/45 md:-right-8"
               />
 
-              <div className="shape-arch relative aspect-4/5 max-h-[56vh] w-full overflow-hidden bg-sage-deep shadow-[0_24px_60px_rgba(18,59,34,0.16)]">
-                <Image
-                  src="/assets/hero-ayurvedic-mortar.webp"
-                  alt="Traditional wooden mortar and pestle with fresh Ayurvedic herbs, roots and botanicals"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 46vw, 90vw"
-                  className="img-settle-load object-cover"
-                />
+              {/* The arch reads as a doorway rather than a frame: the scene drifts
+                  slowly inside it, warm light spills in from the upper left, leaf
+                  shadows move across it, and an inner shadow gives the opening
+                  depth. All decorative layers are transform and opacity only. */}
+              <div className="shape-arch threshold relative aspect-4/5 max-h-[56vh] w-full overflow-hidden bg-sage-deep shadow-[0_24px_60px_rgba(18,59,34,0.16)]">
+                <div className="ambient absolute inset-0">
+                  <Image
+                    src="/assets/hero-ayurvedic-mortar.webp"
+                    alt="Traditional wooden mortar and pestle with fresh Ayurvedic herbs, roots and botanicals"
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 46vw, 90vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div aria-hidden className="dapple absolute -inset-8" />
+                <div aria-hidden className="light-spill absolute inset-0" />
               </div>
 
               {/* Badge sits on the arch's edge, bridging the two columns. */}
