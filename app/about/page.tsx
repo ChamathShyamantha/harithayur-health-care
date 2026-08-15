@@ -3,6 +3,7 @@ import Image from "next/image";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
+import { Highlighter } from "@/components/ui/Highlighter";
 
 export const metadata: Metadata = {
   title: { absolute: "About Harithayur | Rooted in Ayurvedic Tradition" },
@@ -178,7 +179,8 @@ export default function AboutPage() {
         <Container>
           <Reveal>
             <p className="display max-w-[20ch] text-[clamp(2.25rem,5vw,4rem)] text-forest-deep">
-              Honest products. Transparent practices. Better lives naturally.
+              Honest products. Transparent practices.{" "}
+              <Highlighter padding={6}>Better lives naturally.</Highlighter>
             </p>
           </Reveal>
         </Container>

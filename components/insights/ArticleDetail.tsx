@@ -5,6 +5,7 @@ import { Article } from "@/types";
 import { Container } from "@/components/ui/Container";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { Reveal } from "@/components/motion/Reveal";
+import { RainyHero } from "@/components/insights/RainyHero";
 
 export function ArticleDetail({ article }: { article: Article }) {
   return (
@@ -18,23 +19,34 @@ export function ArticleDetail({ article }: { article: Article }) {
           All insights
         </Link>
 
-        <Reveal className="flex max-w-[24ch] flex-col items-start gap-5">
+        <Reveal className="flex flex-col items-start gap-5">
           <span className="eyebrow">{article.category}</span>
-          <h1 className="display text-[clamp(2.25rem,5vw,4rem)] text-forest-deep">
+          {/* The measure lives on the h1, not the wrapper. `ch` resolves against the
+              element's own font-size, so 20ch on a 16px wrapper was capping the
+              title at roughly 190px wide. */}
+          <h1 className="display max-w-[20ch] text-[clamp(2.25rem,5vw,4rem)] text-forest-deep">
             {article.title}
           </h1>
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="relative mt-12 aspect-16/9 w-full overflow-hidden shape-arch bg-sage-deep">
-            <Image
-              src={article.image}
-              alt={article.title}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-            />
+          <div className="mt-12">
+            {/* The monsoon piece gets rain on its hero, because that is what the
+                article is about. Every other article gets the plain image. */}
+            {article.slug === "hela-wedakama-monsoon" ? (
+              <RainyHero src={article.image} />
+            ) : (
+              <div className="relative aspect-16/9 w-full overflow-hidden shape-arch bg-sage-deep">
+                <Image
+                  src={article.image}
+                  alt={article.title}
+                  fill
+                  priority
+                  sizes="100vw"
+                  className="img-settle object-cover"
+                />
+              </div>
+            )}
           </div>
         </Reveal>
 
