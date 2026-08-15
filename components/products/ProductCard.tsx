@@ -1,51 +1,114 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Leaf } from "@phosphor-icons/react/dist/ssr";
 import { Product } from "@/types";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 
-export function ProductCard({ product }: { product: Product }) {
+/**
+ * Two shapes so a product row can be composed asymmetrically rather than as N
+ * identical columns. `tall` leads a section with an arch-masked image; `wide`
+ * fills the remainder with a leaf-cut thumbnail.
+ */
+export function ProductCard({
+  product,
+  variant = "tall",
+}: {
+  product: Product;
+  variant?: "tall" | "wide";
+}) {
+  const href = `/products/${product.slug}`;
+
+  if (variant === "wide") {
+    return (
+      <article className="group grid h-full grid-cols-1 items-center gap-6 rounded-plush border border-border-subtle bg-warm-white p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(18,59,34,0.12)] sm:grid-cols-[minmax(0,9rem)_1fr]">
+        <Link
+          href={href}
+          tabIndex={-1}
+          aria-hidden
+          className="shape-leaf relative aspect-square overflow-hidden bg-cream"
+        >
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            sizes="(min-width: 640px) 9rem, 92vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+          />
+        </Link>
+
+        <div className="flex flex-col items-start gap-3">
+          <span className="eyebrow rounded-pill bg-wood/10 px-3 py-1.5 text-wood">
+            {product.category}
+          </span>
+          <h3 className="display text-2xl text-forest-deep">
+            <Link
+              href={href}
+              className="focus-ring rounded-pill transition-colors duration-200 hover:text-botanical"
+            >
+              {product.name}
+            </Link>
+          </h3>
+          <p className="line-clamp-2 text-sm leading-relaxed text-text-muted">
+            {product.description}
+          </p>
+          <WhatsAppButton
+            label="Consult & Get a Quote"
+            variant="text"
+            message={`Hello Harithayur, I would like to consult about the ${product.name}.`}
+            className="mt-1"
+          />
+        </div>
+      </article>
+    );
+  }
+
   return (
-    <article className="group flex flex-col overflow-hidden rounded-[22px] border border-border-subtle bg-warm-white shadow-[0_8px_24px_rgba(18,59,34,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(18,59,34,0.14)]">
+    <article className="group flex h-full flex-col rounded-plush border border-border-subtle bg-warm-white p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(18,59,34,0.14)]">
       <Link
-        href={`/products/${product.slug}`}
-        className="relative m-3 aspect-square overflow-hidden rounded-2xl bg-cream"
+        href={href}
+        tabIndex={-1}
+        aria-hidden
+        className="shape-arch relative aspect-4/5 overflow-hidden bg-cream"
       >
         <Image
           src={product.image}
           alt={product.name}
           fill
-          sizes="(min-width: 1024px) 32vw, (min-width: 640px) 45vw, 90vw"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+          sizes="(min-width: 1024px) 48vw, 92vw"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
         />
-        <span className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-warm-white/90 text-forest shadow-sm">
-          <Leaf size={16} weight="duotone" />
-        </span>
       </Link>
 
-      <div className="flex flex-1 flex-col gap-3 px-6 pb-6 pt-2">
-        <span className="eyebrow inline-block w-fit rounded-full border border-border-subtle px-3 py-1 text-[0.65rem] text-wood">
+      <div className="flex flex-1 flex-col items-start gap-4 px-4 pb-3 pt-7 md:px-6">
+        <span className="eyebrow rounded-pill bg-wood/10 px-3 py-1.5 text-wood">
           {product.category}
         </span>
-        <h3 className="font-serif text-2xl text-forest-deep">
-          <Link href={`/products/${product.slug}`}>{product.name}</Link>
+        <h3 className="display text-3xl text-forest-deep md:text-[2.25rem]">
+          <Link
+            href={href}
+            className="focus-ring rounded-pill transition-colors duration-200 hover:text-botanical"
+          >
+            {product.name}
+          </Link>
         </h3>
-        <p className="text-sm leading-relaxed text-text-muted">{product.description}</p>
+        <p className="text-sm leading-relaxed text-text-muted">
+          {product.description}
+        </p>
 
-        <ul className="flex flex-col gap-1.5 pt-1">
+        <ul className="flex flex-wrap gap-2 pt-1">
           {product.benefits.map((benefit) => (
-            <li key={benefit} className="flex items-start gap-2 text-sm text-text-dark">
-              <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-botanical" />
+            <li
+              key={benefit}
+              className="rounded-pill bg-cream px-3.5 py-2 text-[0.8125rem] text-forest"
+            >
               {benefit}
             </li>
           ))}
         </ul>
 
-        <div className="mt-auto pt-4">
+        <div className="mt-auto pt-5">
           <WhatsAppButton
             label="Consult & Get a Quote"
             message={`Hello Harithayur, I would like to consult about the ${product.name}.`}
-            className="w-full transition-transform duration-300 group-hover:-translate-y-0.5"
           />
         </div>
       </div>

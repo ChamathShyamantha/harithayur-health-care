@@ -1,0 +1,7 @@
+A warm, calm, natural-light photograph for a Sri Lankan herbal wellness brand. Colours limited to: warm off-white, soft cream, deep forest green, fresh leaf green, and warm reddish-brown wood. No black, no grey, no blue, no purple. Soft diffused daylight from the upper left, gentle shadows, low contrast, nothing harsh or dramatic. Materials are matte and handmade: warm cream ceramic, pale aged wood, fresh green leaves, plain amber glass, undyed cream cloth. Photorealistic, shot on a medium format camera, shallow but controlled depth of field. Not an illustration, not a 3D render, not a painting.
+
+A slim amber glass dropper bottle with a warm wooden cap stands upright in the centre of a warm cream surface. The glass is completely smooth and bare, straight from the glassworks, with nothing applied to its surface. Small round succulent green leaves trail across the surface from the right. A single clear droplet hangs at the tip of the dropper. Soft daylight, one gentle shadow falling to the right. Square composition in a 1:1 ratio.
+
+Keep the bottle centred with even empty space on all four sides. The corners of this photograph will be cropped away into a rounded shape, so nothing important may sit near a corner.
+
+Absolutely no text anywhere in this image. No letters, no words, no numbers, no writing, no printing, no signage, no watermark, no logo, no symbols, no handwriting. Every surface is blank and unmarked. This is a pure photograph with nothing written on any object or anywhere in the frame.

@@ -1,87 +1,96 @@
 import Image from "next/image";
-import { CheckCircle } from "@phosphor-icons/react/dist/ssr";
+import Link from "next/link";
+import { ArrowLeft } from "@phosphor-icons/react/dist/ssr";
 import { Product } from "@/types";
 import { Container } from "@/components/ui/Container";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function ProductDetail({ product }: { product: Product }) {
   return (
-    <section className="py-10 md:py-16">
+    <section className="py-12 md:py-20">
       <Container>
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="relative aspect-square w-full overflow-hidden rounded-[28px] bg-cream lg:sticky lg:top-28 lg:self-start">
-            <Image
-              src={product.image}
-              alt={product.name}
-              fill
-              priority
-              sizes="(min-width: 1024px) 45vw, 90vw"
-              className="object-cover"
-            />
+        <Link
+          href="/products"
+          className="focus-ring mb-12 inline-flex items-center gap-2 rounded-soft text-[0.8125rem] text-text-muted transition-colors duration-200 hover:text-botanical"
+        >
+          <ArrowLeft size={15} aria-hidden />
+          All remedies
+        </Link>
+
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-6">
+            <div className="relative aspect-4/5 w-full overflow-hidden shape-arch bg-cream lg:sticky lg:top-24">
+              <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                priority
+                sizes="(min-width: 1024px) 48vw, 92vw"
+                className="object-cover"
+              />
+            </div>
           </div>
 
-          <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-4">
-              <span className="eyebrow inline-block w-fit rounded-full border border-border-subtle px-3 py-1 text-wood">
-                {product.category}
-              </span>
-              <h1 className="font-serif text-4xl leading-tight text-forest-deep md:text-5xl">
+          <div className="flex flex-col gap-12 lg:col-span-6">
+            <Reveal className="flex flex-col items-start gap-5">
+              <span className="eyebrow">{product.category}</span>
+              <h1 className="display text-[clamp(2.25rem,4.5vw,3.5rem)] text-forest-deep">
                 {product.name}
               </h1>
-              <p className="text-base leading-relaxed text-text-muted md:text-lg">
+              <p className="max-w-[48ch] text-[0.9375rem] leading-relaxed text-text-muted md:text-base">
                 {product.description}
               </p>
               <WhatsAppButton
                 label="Consult & Get a Quote"
                 message={`Hello Harithayur, I would like to consult about the ${product.name}.`}
-                className="w-fit"
+                className="mt-2"
               />
-            </div>
+            </Reveal>
 
-            <div className="border-t border-border-subtle pt-8">
-              <h2 className="font-serif text-2xl text-forest-deep mb-4">Key Benefits</h2>
-              <ul className="flex flex-col gap-3">
+            <Reveal className="flex flex-col gap-4">
+              <h2 className="display text-2xl text-forest-deep">Key benefits</h2>
+              <ul className="flex flex-col">
                 {product.benefits.map((benefit) => (
-                  <li key={benefit} className="flex items-start gap-3 text-sm text-text-dark">
-                    <CheckCircle size={18} weight="fill" className="mt-0.5 shrink-0 text-botanical" />
+                  <li
+                    key={benefit}
+                    className="border-t border-border-subtle py-3.5 text-sm text-text-dark"
+                  >
                     {benefit}
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
 
-            <div className="border-t border-border-subtle pt-8">
-              <h2 className="font-serif text-2xl text-forest-deep mb-4">Ingredients</h2>
-              <ul className="flex flex-col gap-2">
-                {product.ingredients.map((ingredient) => (
-                  <li key={ingredient} className="flex items-start gap-3 text-sm text-text-muted">
-                    <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-wood-warm" />
-                    {ingredient}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <Reveal className="flex flex-col gap-4">
+              <h2 className="display text-2xl text-forest-deep">Ingredients</h2>
+              <p className="text-sm leading-relaxed text-text-muted">
+                {product.ingredients.join(", ")}.
+              </p>
+            </Reveal>
 
-            <div className="border-t border-border-subtle pt-8">
-              <h2 className="font-serif text-2xl text-forest-deep mb-4">How to Use</h2>
-              <ol className="flex flex-col gap-3">
-                {product.howToUse.map((step, index) => (
-                  <li key={step} className="flex items-start gap-3 text-sm text-text-dark">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cream text-xs font-semibold text-forest">
-                      {index + 1}
-                    </span>
+            <Reveal className="flex flex-col gap-4">
+              <h2 className="display text-2xl text-forest-deep">How to use</h2>
+              <ol className="flex flex-col gap-4">
+                {product.howToUse.map((step) => (
+                  <li
+                    key={step}
+                    className="flex gap-4 border-t border-border-subtle pt-3.5 text-sm text-text-dark"
+                  >
                     {step}
                   </li>
                 ))}
               </ol>
-            </div>
+            </Reveal>
 
-            <div className="rounded-3xl bg-cream/70 p-6 md:p-8">
-              <h2 className="font-serif text-2xl text-forest-deep mb-3">
-                Ayurvedic Philosophy
+            <Reveal className="rounded-soft border border-border-subtle bg-cream p-7 md:p-9">
+              <h2 className="display mb-3 text-2xl text-forest-deep">
+                Ayurvedic philosophy
               </h2>
-              <p className="text-sm leading-relaxed text-text-muted">{product.philosophy}</p>
-            </div>
+              <p className="text-sm leading-relaxed text-text-muted">
+                {product.philosophy}
+              </p>
+            </Reveal>
           </div>
         </div>
       </Container>

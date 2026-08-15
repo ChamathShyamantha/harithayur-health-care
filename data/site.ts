@@ -11,8 +11,8 @@ export const siteConfig: SiteConfig = {
     whatsappNumber: "+94771234567",
     whatsappDisplay: "+94 77 123 4567",
     email: "info@harithayur.com",
-    businessHours: "8:00 AM – 6:00 PM",
-    businessDays: "Mon–Sat",
+    businessHours: "8:00 AM - 6:00 PM",
+    businessDays: "Mon - Sat",
   },
   whatsappDefaultMessage:
     "Hello Harithayur, I would like to consult about your Ayurvedic remedies.",

@@ -1,25 +1,29 @@
-import { Leaf } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 
 export default function NotFound() {
   return (
-    <section className="py-24 md:py-32">
+    <section className="py-28 md:py-40">
       <Container>
-        <div className="mx-auto flex max-w-lg flex-col items-center gap-5 text-center">
-          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-cream text-forest">
-            <Leaf size={28} />
-          </span>
-          <h1 className="font-serif text-4xl text-forest-deep md:text-5xl">
-            Page Not Found
-          </h1>
-          <p className="text-base leading-relaxed text-text-muted">
-            The page you are looking for may have been moved or no longer
-            exists. Let&apos;s guide you back to your wellness journey.
+        <div className="flex max-w-xl flex-col items-start gap-6">
+          <p className="display text-[clamp(4rem,12vw,9rem)] leading-none text-forest/15">
+            404
           </p>
-          <Button href="/" variant="primary">
-            Back to Home
-          </Button>
+          <h1 className="display text-[clamp(2rem,4vw,3rem)] text-forest-deep">
+            This page has been moved
+          </h1>
+          <p className="max-w-[46ch] text-[0.9375rem] leading-relaxed text-text-muted">
+            The page you are looking for no longer exists at this address. The
+            remedies and the writing are both still here.
+          </p>
+          <div className="flex flex-wrap gap-4 pt-2">
+            <Button href="/" variant="primary">
+              Back to Home
+            </Button>
+            <Button href="/products" variant="secondary">
+              Explore Remedies
+            </Button>
+          </div>
         </div>
       </Container>
     </section>

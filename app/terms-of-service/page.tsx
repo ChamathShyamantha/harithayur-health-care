@@ -12,9 +12,9 @@ export default function TermsOfServicePage() {
   return (
     <>
       <PageHeader heading="Terms of Service" />
-      <section className="pb-20 md:pb-28">
+      <section className="py-16 md:py-24">
         <Container>
-          <div className="mx-auto flex max-w-2xl flex-col gap-6 text-sm leading-relaxed text-text-muted">
+          <div className="flex max-w-[68ch] flex-col gap-6 text-[0.9375rem] leading-relaxed text-text-muted">
             <p>
               By using the {siteConfig.name} website, you agree to consult
               our Ayurvedic experts before beginning any new remedy. Our

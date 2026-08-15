@@ -12,9 +12,9 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       <PageHeader heading="Privacy Policy" />
-      <section className="pb-20 md:pb-28">
+      <section className="py-16 md:py-24">
         <Container>
-          <div className="mx-auto flex max-w-2xl flex-col gap-6 text-sm leading-relaxed text-text-muted">
+          <div className="flex max-w-[68ch] flex-col gap-6 text-[0.9375rem] leading-relaxed text-text-muted">
             <p>
               {siteConfig.name} respects your privacy. This page will outline
               how we collect, use, and safeguard your personal information

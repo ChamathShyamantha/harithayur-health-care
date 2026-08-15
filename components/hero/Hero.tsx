@@ -1,84 +1,76 @@
 import Image from "next/image";
-import Link from "next/link";
-import { Flask, FlowerLotus, HandHeart, Leaf, Play } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-
-const trustIndicators = [
-  { icon: FlowerLotus, label: "Rooted in Ayurveda" },
-  { icon: Leaf, label: "100% Natural Ingredients" },
-  { icon: Flask, label: "Clinically Researched" },
-  { icon: HandHeart, label: "Personalized for You" },
-];
+import { Blob } from "@/components/ui/Blob";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-8 pb-16 md:pt-10 md:pb-24">
+    <section className="relative isolate overflow-hidden pt-10 pb-20 md:pt-14 md:pb-28">
+      <Blob
+        variant="a"
+        className="-left-40 top-10 h-[34rem] w-[34rem] bg-cream md:-left-24"
+      />
+
       <Container>
-        <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-10">
-          <div className="flex flex-col items-start gap-6">
-            <span className="eyebrow inline-flex items-center gap-2 rounded-full border border-border-subtle bg-cream px-4 py-2 text-forest">
-              <Leaf size={14} weight="fill" className="text-botanical" />
-              Nature&apos;s Healing Touch
-            </span>
+        <div className="grid items-center gap-y-16 lg:grid-cols-12 lg:gap-x-14">
+          <div className="flex flex-col items-start gap-7 lg:col-span-6">
+            <Reveal>
+              <h1 className="display text-[clamp(2.75rem,5vw,4.25rem)] text-forest-deep">
+                Ancient wisdom
+                <br />
+                for{" "}
+                <em className="pb-1 italic text-botanical">modern wellness</em>
+              </h1>
+            </Reveal>
 
-            <h1 className="font-serif text-5xl leading-[1.15] text-forest-deep md:text-6xl lg:text-[4.25rem]">
-              Ancient Wisdom
-              <br />
-              for <em className="text-botanical italic">Modern Wellness</em>
-            </h1>
+            <Reveal delay={0.1}>
+              <p className="max-w-[42ch] text-[0.9375rem] leading-relaxed text-text-muted md:text-base">
+                Personalized Ayurvedic care, crafted by nature and rooted in
+                centuries of healing traditions.
+              </p>
+            </Reveal>
 
-            <p className="max-w-[46ch] text-base leading-relaxed text-text-muted md:text-lg">
-              Personalized Ayurvedic care, crafted by nature and rooted in
-              centuries of healing traditions.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-5 pt-2">
-              <Button href="/products" variant="primary">
-                Explore Remedies
-              </Button>
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-3 text-sm font-semibold text-forest-deep transition-colors duration-200 hover:text-forest"
-              >
-                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-forest-deep/25">
-                  <Play size={14} weight="fill" />
-                </span>
-                Our Philosophy
-              </Link>
-            </div>
-
-            <dl className="mt-4 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-border-subtle pt-6 sm:grid-cols-4">
-              {trustIndicators.map(({ icon: Icon, label }) => (
-                <div key={label} className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream text-forest">
-                    <Icon size={18} />
-                  </span>
-                  <dt className="text-xs leading-snug text-text-muted">{label}</dt>
-                </div>
-              ))}
-            </dl>
+            <Reveal delay={0.18}>
+              <div className="flex flex-wrap items-center gap-4">
+                <Button href="/products" variant="primary">
+                  Explore Remedies
+                  <ArrowRight size={15} aria-hidden />
+                </Button>
+                <Button href="/about" variant="secondary">
+                  Our Philosophy
+                </Button>
+              </div>
+            </Reveal>
           </div>
 
-          <div className="relative">
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-tl-[6rem] rounded-tr-3xl rounded-br-3xl rounded-bl-3xl md:rounded-tl-[9rem] shadow-[0_30px_60px_rgba(18,59,34,0.14)]">
+          <Reveal delay={0.12} className="relative lg:col-span-6">
+            {/* Arch-masked hero image with a petal-shaped field behind it, offset
+                so the two shapes read as layered rather than stacked. */}
+            <div
+              aria-hidden
+              className="shape-leaf absolute -right-6 -top-8 h-[78%] w-[86%] bg-botanical-light/45 md:-right-10"
+            />
+            <div className="shape-arch relative mx-auto aspect-4/5 w-full max-h-[62vh] max-w-[30rem] overflow-hidden bg-cream shadow-[0_24px_60px_rgba(18,59,34,0.16)] lg:max-w-none">
               <Image
                 src="/assets/hero-ayurvedic-mortar.webp"
                 alt="Traditional wooden mortar and pestle with fresh Ayurvedic herbs, roots and botanicals"
                 fill
                 priority
-                sizes="(min-width: 1024px) 45vw, 90vw"
+                sizes="(min-width: 1024px) 46vw, 90vw"
                 className="object-cover"
               />
             </div>
 
-            <div className="absolute -top-4 right-4 flex w-36 flex-col items-center gap-1 rounded-3xl bg-warm-white px-5 py-5 text-center shadow-[0_16px_40px_rgba(18,59,34,0.16)] md:right-0 md:translate-x-6">
-              <span className="font-serif text-4xl text-forest-deep">25+</span>
-              <span className="text-xs leading-snug text-text-muted">
-                Years of Ayurvedic Trust
+            {/* Circular badge breaking the arch's edge. */}
+            <div className="absolute -bottom-4 left-0 flex h-28 w-28 flex-col items-center justify-center rounded-full bg-forest text-warm-white shadow-[0_14px_36px_rgba(18,59,34,0.28)] md:left-4 md:h-32 md:w-32">
+              <span className="display text-3xl md:text-4xl">25+</span>
+              <span className="max-w-[7rem] px-2 text-center text-[0.625rem] leading-tight text-warm-white/80">
+                Years of Ayurvedic trust
               </span>
             </div>
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

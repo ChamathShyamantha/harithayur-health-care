@@ -1,49 +1,69 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft } from "@phosphor-icons/react/dist/ssr";
 import { Article } from "@/types";
 import { Container } from "@/components/ui/Container";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function ArticleDetail({ article }: { article: Article }) {
   return (
     <article className="pb-20 md:pb-28">
       <Container>
-        <div className="mx-auto flex max-w-3xl flex-col gap-6 text-center">
-          <span className="eyebrow text-botanical">{article.category}</span>
-          <h1 className="font-serif text-4xl leading-tight text-forest-deep md:text-5xl">
+        <Link
+          href="/insights"
+          className="focus-ring mb-12 inline-flex items-center gap-2 rounded-soft text-[0.8125rem] text-text-muted transition-colors duration-200 hover:text-botanical"
+        >
+          <ArrowLeft size={15} aria-hidden />
+          All insights
+        </Link>
+
+        <Reveal className="flex max-w-[24ch] flex-col items-start gap-5">
+          <span className="eyebrow">{article.category}</span>
+          <h1 className="display text-[clamp(2.25rem,5vw,4rem)] text-forest-deep">
             {article.title}
           </h1>
-          <p className="text-base leading-relaxed text-text-muted md:text-lg">
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <div className="relative mt-12 aspect-16/9 w-full overflow-hidden shape-arch bg-cream">
+            <Image
+              src={article.image}
+              alt={article.title}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+          </div>
+        </Reveal>
+
+        {/* Measure capped for reading; the intro sits larger to open the piece. */}
+        <div className="mt-14 max-w-[68ch]">
+          <p className="display mb-10 text-[clamp(1.25rem,2.2vw,1.75rem)] leading-snug text-forest-deep">
             {article.excerpt}
           </p>
-        </div>
 
-        <div className="relative mx-auto mt-10 aspect-[16/9] w-full max-w-4xl overflow-hidden rounded-[28px] bg-cream">
-          <Image
-            src={article.image}
-            alt={article.title}
-            fill
-            priority
-            sizes="(min-width: 1024px) 60vw, 90vw"
-            className="object-cover"
-          />
-        </div>
+          <div className="flex flex-col gap-6">
+            {article.content?.map((paragraph, index) => (
+              <p
+                key={index}
+                className="text-[1.0625rem] leading-[1.75] text-text-dark"
+              >
+                {paragraph}
+              </p>
+            ))}
+          </div>
 
-        <div className="mx-auto mt-12 flex max-w-2xl flex-col gap-6">
-          {article.content?.map((paragraph, index) => (
-            <p key={index} className="text-base leading-relaxed text-text-dark">
-              {paragraph}
-            </p>
-          ))}
-
-          <div className="mt-6 flex flex-col items-center gap-4 rounded-3xl bg-cream/70 p-8 text-center">
-            <h2 className="font-serif text-2xl text-forest-deep">
-              Consult Our Ayurvedic Experts
+          <div className="mt-16 flex flex-col items-start gap-4 border-t border-border-subtle pt-10">
+            <h2 className="display text-2xl text-forest-deep">
+              Questions about what you just read?
             </h2>
-            <p className="max-w-[45ch] text-sm leading-relaxed text-text-muted">
-              Have questions about what you just read? Speak with our
-              Ayurvedic experts for personalized guidance.
+            <p className="max-w-[48ch] text-sm leading-relaxed text-text-muted">
+              Our practitioners will read your situation properly and tell you
+              what actually applies to you.
             </p>
-            <WhatsAppButton label="Chat on WhatsApp" />
+            <WhatsAppButton label="Consult on WhatsApp" />
           </div>
         </div>
       </Container>

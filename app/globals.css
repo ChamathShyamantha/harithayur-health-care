@@ -1,6 +1,28 @@
 @import "tailwindcss";
 
-:root {
+/* ---------------------------------------------------------------------------
+   HARITHAYUR DESIGN SYSTEM
+
+   Direction: warm organic apothecary. The brand's own cream and forest palette,
+   with the character carried by SHAPE rather than colour. Nothing on this site
+   is a plain rectangle.
+
+   SHAPE SYSTEM (the documented rule, follow it everywhere):
+     - Portrait imagery ....... .shape-arch    (cathedral arch, round top)
+     - Wide imagery ........... .shape-capsule (fully round left and right ends)
+     - Accent imagery ......... .shape-leaf    (two opposite corners round)
+     - Panels and cards ....... rounded-soft (28px) / rounded-plush (40px)
+     - Interactive ............ rounded-pill
+     - Decoration ............. .shape-blob   (organic, never a circle)
+   Sharp 90-degree corners are not used anywhere.
+
+   Locks:
+     - Theme lock:  one light theme, every section.
+     - Colour lock: forest green is the accent. Wood brown appears ONLY on
+                    category tags, nowhere else.
+--------------------------------------------------------------------------- */
+
+@theme {
   --color-forest: #123b22;
   --color-forest-deep: #0d351c;
   --color-botanical: #4f8f32;
@@ -13,47 +35,153 @@
   --color-text-muted: #687067;
   --color-border-subtle: rgba(30, 60, 35, 0.12);
 
-  --font-serif: var(--font-cormorant), "Cormorant Garamond", serif;
-  --font-sans: var(--font-inter), "Inter", sans-serif;
+  --radius-soft: 1.75rem;
+  --radius-plush: 2.5rem;
+  --radius-pill: 9999px;
 }
 
 @theme inline {
-  --color-forest: var(--color-forest);
-  --color-forest-deep: var(--color-forest-deep);
-  --color-botanical: var(--color-botanical);
-  --color-botanical-light: var(--color-botanical-light);
-  --color-wood: var(--color-wood);
-  --color-wood-warm: var(--color-wood-warm);
-  --color-cream: var(--color-cream);
-  --color-warm-white: var(--color-warm-white);
-  --color-text-dark: var(--color-text-dark);
-  --color-text-muted: var(--color-text-muted);
-  --color-border-subtle: var(--color-border-subtle);
-
-  --font-serif: var(--font-serif);
-  --font-sans: var(--font-sans);
+  --font-display: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-geist), system-ui, -apple-system, sans-serif;
 }
 
-* {
+html {
   scroll-behavior: smooth;
+  background: var(--color-warm-white);
 }
 
 body {
   background: var(--color-warm-white);
   color: var(--color-text-dark);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-botanical-light);
+  color: var(--color-forest-deep);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  letter-spacing: -0.015em;
+  line-height: 1.06;
 }
 
 .eyebrow {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 600;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
+  color: var(--color-botanical);
+}
+
+/* --- Shape language ------------------------------------------------------ */
+
+/* Cathedral arch. The top half is a true semicircle, so the radius has to be
+   half the element width; 50% of the box does that at any size. */
+.shape-arch {
+  border-radius: 50% 50% var(--radius-soft) var(--radius-soft) / 44% 44%
+    var(--radius-soft) var(--radius-soft);
+}
+
+/* Capsule for wide media: both ends fully round. */
+.shape-capsule {
+  border-radius: var(--radius-pill);
+}
+
+/* Leaf: two opposite corners fully round, the other two barely touched. */
+.shape-leaf {
+  border-radius: 46% 0.75rem 46% 0.75rem;
+}
+
+.shape-leaf-flip {
+  border-radius: 0.75rem 46% 0.75rem 46%;
+}
+
+/* Organic decorative field. Values are deliberately far from 50% so it never
+   collapses into reading as a plain circle. */
+.shape-blob {
+  border-radius: 71% 29% 54% 46% / 38% 62% 38% 62%;
+}
+
+.shape-blob-alt {
+  border-radius: 28% 72% 66% 34% / 65% 32% 68% 35%;
+}
+
+/* --- Scroll reveal ------------------------------------------------------- */
+
+/* Content is visible by default and the animation is layered on top only where the
+   browser supports scroll-driven timelines. Nothing here can leave content hidden:
+   no JS runs, so a failed hydration, a blocked bundle or an interfering extension
+   cannot make the page disappear. */
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 24%;
+    }
+  }
+}
+
+/* Section that curves up over the one before it. */
+.curve-top {
+  border-top-left-radius: clamp(2.5rem, 6vw, 5rem);
+  border-top-right-radius: clamp(2.5rem, 6vw, 5rem);
+}
+
+/* --- Focus --------------------------------------------------------------- */
+
+.focus-ring {
+  outline: none;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--focus-ring, var(--color-forest));
+  outline-offset: 3px;
+}
+
+/* Dark surfaces retheme the ring so it stays visible. */
+.surface-dark {
+  --focus-ring: var(--color-botanical-light);
+}
+
+.skip-link {
+  position: fixed;
+  top: -6rem;
+  left: 1rem;
+  z-index: 100;
+  background: var(--color-forest-deep);
+  color: var(--color-warm-white);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: top 200ms ease-out;
+}
+
+.skip-link:focus {
+  top: 1rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

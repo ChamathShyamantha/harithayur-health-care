@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
 import { Container } from "@/components/ui/Container";
+import { Blob } from "@/components/ui/Blob";
+import { Reveal } from "@/components/motion/Reveal";
 
 export function PageHeader({
   eyebrow,
@@ -15,26 +17,43 @@ export function PageHeader({
   children?: ReactNode;
 }) {
   return (
-    <section className="pt-8 pb-16 md:pt-12 md:pb-20">
+    <section className="relative isolate overflow-hidden pt-14 pb-16 md:pt-20 md:pb-24">
+      <Blob
+        variant="b"
+        className="-left-40 -top-32 h-[32rem] w-[32rem] bg-cream"
+      />
+
       <Container>
-        <div className="mx-auto flex max-w-3xl flex-col items-center gap-5 text-center">
-          {eyebrow ? (
-            <span className="eyebrow text-botanical">{eyebrow}</span>
+        <div className="grid gap-y-8 lg:grid-cols-12 lg:gap-x-12">
+          <Reveal className="flex flex-col items-start gap-5 lg:col-span-7">
+            {eyebrow ? (
+              <span className="eyebrow rounded-pill bg-cream px-4 py-2">
+                {eyebrow}
+              </span>
+            ) : null}
+            <h1 className="display text-[clamp(2.5rem,5vw,4.25rem)] text-forest-deep">
+              {heading}
+            </h1>
+            {subheading ? (
+              <p className="display pb-1 text-[clamp(1.5rem,2.4vw,2rem)] italic text-botanical">
+                {subheading}
+              </p>
+            ) : null}
+          </Reveal>
+
+          {description || children ? (
+            <Reveal
+              delay={0.12}
+              className="flex flex-col items-start gap-6 lg:col-span-5 lg:self-end lg:pb-2"
+            >
+              {description ? (
+                <p className="max-w-[46ch] text-[0.9375rem] leading-relaxed text-text-muted">
+                  {description}
+                </p>
+              ) : null}
+              {children}
+            </Reveal>
           ) : null}
-          <h1 className="font-serif text-5xl leading-[1.1] text-forest-deep md:text-6xl">
-            {heading}
-          </h1>
-          {subheading ? (
-            <p className="font-serif text-2xl italic text-botanical md:text-3xl">
-              {subheading}
-            </p>
-          ) : null}
-          {description ? (
-            <p className="max-w-[55ch] text-base leading-relaxed text-text-muted md:text-lg">
-              {description}
-            </p>
-          ) : null}
-          {children}
         </div>
       </Container>
     </section>

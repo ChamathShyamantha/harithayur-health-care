@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Clock, Envelope, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { ConsultationForm } from "@/components/contact/ConsultationForm";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { Reveal } from "@/components/motion/Reveal";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -14,18 +14,17 @@ export const metadata: Metadata = {
 
 const contactDetails = [
   {
-    icon: WhatsappLogo,
     label: "WhatsApp",
     value: siteConfig.contact.whatsappDisplay,
+    href: `tel:${siteConfig.contact.whatsappNumber}`,
   },
   {
-    icon: Envelope,
     label: "Email",
     value: siteConfig.contact.email,
+    href: `mailto:${siteConfig.contact.email}`,
   },
   {
-    icon: Clock,
-    label: "Business Hours",
+    label: "Business hours",
     value: `${siteConfig.contact.businessDays}, ${siteConfig.contact.businessHours}`,
   },
 ];
@@ -34,44 +33,52 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
-        heading="Let's Begin Your Wellness Journey."
+        heading="Let's begin your wellness journey."
         description="Have a question, need guidance, or want to understand which Ayurvedic remedy is right for you?"
       />
 
-      <section className="pb-20 md:pb-28">
+      <section className="py-16 md:py-24">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16">
-            <div className="flex flex-col gap-8">
-              <div className="flex flex-col gap-6">
-                {contactDetails.map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="flex items-start gap-4">
-                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-cream text-forest">
-                      <Icon size={20} />
-                    </span>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wide text-text-muted">
-                        {label}
-                      </p>
-                      <p className="text-base text-text-dark">{value}</p>
-                    </div>
+          <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
+            <Reveal className="flex flex-col gap-10 lg:col-span-5">
+              <dl className="flex flex-col">
+                {contactDetails.map((item) => (
+                  <div
+                    key={item.label}
+                    className="flex flex-col gap-1.5 border-t border-border-subtle py-6"
+                  >
+                    <dt className="eyebrow">{item.label}</dt>
+                    <dd className="display text-2xl text-forest-deep">
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          className="focus-ring rounded-soft transition-colors duration-200 hover:text-botanical"
+                        >
+                          {item.value}
+                        </a>
+                      ) : (
+                        item.value
+                      )}
+                    </dd>
                   </div>
                 ))}
-              </div>
+              </dl>
 
-              <div className="rounded-3xl border border-border-subtle bg-cream/60 p-6">
-                <h2 className="font-serif text-xl text-forest-deep mb-1">
-                  Consult Our Ayurvedic Experts
-                </h2>
-                <p className="text-sm text-text-muted mb-5">
-                  {siteConfig.contact.whatsappDisplay}
+              <div className="flex flex-col items-start gap-4 border-t border-border-subtle pt-8">
+                <p className="max-w-[38ch] text-sm leading-relaxed text-text-muted">
+                  If you would rather talk it through, our practitioners answer
+                  on WhatsApp during business hours.
                 </p>
-                <WhatsAppButton label="Chat on WhatsApp" className="w-full" />
+                <WhatsAppButton label="Consult on WhatsApp" />
               </div>
-            </div>
+            </Reveal>
 
-            <div className="rounded-3xl border border-border-subtle bg-warm-white p-6 shadow-[0_8px_24px_rgba(18,59,34,0.06)] md:p-10">
+            <Reveal
+              delay={0.1}
+              className="rounded-soft border border-border-subtle bg-cream p-6 md:p-10 lg:col-span-7"
+            >
               <ConsultationForm />
-            </div>
+            </Reveal>
           </div>
         </Container>
       </section>

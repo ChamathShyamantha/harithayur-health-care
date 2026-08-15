@@ -1,8 +1,7 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 import { FacebookLogo, InstagramLogo, YoutubeLogo } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/ui/Container";
-import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { footerCompanyLinks, footerQuickLinks } from "@/data/navigation";
 import { siteConfig } from "@/data/site";
 
@@ -14,38 +13,36 @@ const socialIcons = {
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-forest-deep text-warm-white/90">
-      <svg
-        aria-hidden
-        viewBox="0 0 200 200"
-        className="pointer-events-none absolute -right-10 -bottom-16 h-72 w-72 text-warm-white/5 md:h-96 md:w-96"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1"
-      >
-        <path d="M100 190C60 150 40 110 100 20C160 110 140 150 100 190Z" />
-        <path d="M100 190V60" />
-        <path d="M100 100C130 90 150 70 155 45" />
-        <path d="M100 120C70 110 50 90 45 65" />
-      </svg>
+    <footer className="surface-dark curve-top mt-4 bg-forest-deep text-warm-white/90">
+      <Container>
+        {/* Oversized wordmark closes the page. Cheaper than another band, and it is the
+            last thing the eye holds. */}
+        <div className="border-b border-warm-white/10 py-14 md:py-16">
+          <p className="display text-[clamp(3.5rem,13vw,11rem)] leading-[0.85] text-warm-white/10">
+            {siteConfig.name}
+          </p>
+        </div>
 
-      <Container className="relative py-16 md:py-20">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-          <div className="flex flex-col gap-4">
-            <Link href="/" className="flex items-center gap-3">
+        <div className="grid gap-12 py-14 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">
+          <div className="flex flex-col items-start gap-5">
+            <Link
+              href="/"
+              className="focus-ring flex w-fit items-center gap-3 rounded-pill"
+              aria-label={`${siteConfig.name} home`}
+            >
               <Image
                 src={siteConfig.logo}
-                alt={`${siteConfig.name} logo`}
+                alt=""
                 width={80}
                 height={80}
-                className="h-11 w-11 rounded-full object-cover"
+                className="h-9 w-9 rounded-full object-cover"
               />
-              <span className="font-serif text-2xl text-warm-white">{siteConfig.name}</span>
+              <span className="display text-xl text-warm-white">{siteConfig.name}</span>
             </Link>
-            <p className="max-w-xs text-sm leading-relaxed text-warm-white/70">
+            <p className="max-w-[30ch] text-sm leading-relaxed text-warm-white/70">
               Ancient wisdom. Pure ingredients. Personalized wellness.
             </p>
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-2 pt-1">
               {siteConfig.social.map((item) => {
                 const Icon = socialIcons[item.label as keyof typeof socialIcons];
                 return (
@@ -55,63 +52,86 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={item.label}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-warm-white/20 text-warm-white/80 transition-colors duration-200 hover:bg-warm-white/10"
+                    className="focus-ring flex h-10 w-10 items-center justify-center rounded-full border border-warm-white/20 text-warm-white/80 transition-colors duration-200 hover:border-botanical-light hover:text-botanical-light"
                   >
-                    <Icon size={16} />
+                    <Icon size={16} aria-hidden />
                   </a>
                 );
               })}
             </div>
           </div>
 
-          <div>
-            <h3 className="eyebrow mb-5 text-botanical-light">Quick Links</h3>
+          <nav aria-label="Footer navigation">
+            <h2 className="eyebrow mb-6 text-botanical-light">Explore</h2>
             <ul className="flex flex-col gap-3">
               {footerQuickLinks.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-sm text-warm-white/75 transition-colors duration-200 hover:text-warm-white"
+                    className="focus-ring inline-block rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-botanical-light"
                   >
                     {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
-            <h3 className="eyebrow mb-5 text-botanical-light">Company</h3>
+          <nav aria-label="Company links">
+            <h2 className="eyebrow mb-6 text-botanical-light">Company</h2>
             <ul className="flex flex-col gap-3">
               {footerCompanyLinks.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="text-sm text-warm-white/75 transition-colors duration-200 hover:text-warm-white"
+                    className="focus-ring inline-block rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-botanical-light"
                   >
                     {item.label}
                   </Link>
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          <div className="rounded-3xl border border-warm-white/15 bg-warm-white/5 p-6">
-            <h3 className="font-serif text-xl text-warm-white mb-2">
-              Talk to Our Ayurvedic Experts
-            </h3>
-            <p className="text-sm text-warm-white/70 mb-5">{siteConfig.contact.whatsappDisplay}</p>
-            <WhatsAppButton label="Chat on WhatsApp" className="w-full" />
+          <div className="flex flex-col items-start gap-4">
+            <h2 className="eyebrow text-botanical-light">Consultation</h2>
+            <p className="display text-2xl text-warm-white">
+              Talk to our Ayurvedic experts
+            </p>
+            <a
+              href={`tel:${siteConfig.contact.whatsappNumber}`}
+              className="focus-ring rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-botanical-light"
+            >
+              {siteConfig.contact.whatsappDisplay}
+            </a>
+            <a
+              href={`mailto:${siteConfig.contact.email}`}
+              className="focus-ring rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-botanical-light"
+            >
+              {siteConfig.contact.email}
+            </a>
+            <p className="text-sm text-warm-white/70">
+              {siteConfig.contact.businessDays}, {siteConfig.contact.businessHours}
+            </p>
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-3 border-t border-warm-white/10 pt-6 text-xs text-warm-white/60 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
+        <div className="flex flex-col gap-3 border-t border-warm-white/10 py-7 text-xs text-warm-white/65 md:flex-row md:items-center md:justify-between">
+          <p>
+            &copy; {new Date().getFullYear()} {siteConfig.name}. All rights
+            reserved.
+          </p>
           <div className="flex items-center gap-6">
-            <Link href="/privacy-policy" className="hover:text-warm-white">
+            <Link
+              href="/privacy-policy"
+              className="focus-ring rounded-pill transition-colors duration-200 hover:text-botanical-light"
+            >
               Privacy Policy
             </Link>
-            <Link href="/terms-of-service" className="hover:text-warm-white">
+            <Link
+              href="/terms-of-service"
+              className="focus-ring rounded-pill transition-colors duration-200 hover:text-botanical-light"
+            >
               Terms of Service
             </Link>
           </div>

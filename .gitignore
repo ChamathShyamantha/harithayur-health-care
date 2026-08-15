@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local agent tooling, not part of the site
+/.claude
+/.agents
+/skills-lock.json
+
+# original full-size image generations, kept locally; the build uses the
+# optimised WebP files in public/assets
+/design/source-images
