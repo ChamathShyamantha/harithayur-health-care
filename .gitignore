@@ -51,3 +51,6 @@ next-env.d.ts
 
 # retired skills, kept locally
 /skills-disabled
+
+# retired preview route, kept locally
+/design/v2-archive
