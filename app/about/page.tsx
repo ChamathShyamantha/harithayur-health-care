@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { Highlighter } from "@/components/ui/Highlighter";
+import { NotThis } from "@/components/about/NotThis";
 
 export const metadata: Metadata = {
   title: { absolute: "About Harithayur | Rooted in Ayurvedic Tradition" },
@@ -156,32 +157,29 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="py-16 md:py-20">
-        <Container>
-          <div className="surface-dark rounded-plush bg-forest px-8 py-14 md:px-14 md:py-16">
-            <ul className="flex flex-wrap items-baseline gap-x-10 gap-y-4">
-              {values.map((value, index) => (
-                <Reveal
-                  key={value}
-                  as="li"
-                  delay={index * 0.05}
-                  className="display text-[clamp(1.5rem,3.4vw,2.75rem)] text-warm-white"
-                >
-                  {value}
-                </Reveal>
-              ))}
-            </ul>
-          </div>
-        </Container>
-      </section>
+      {/* The values used to be a forest panel of five words. Every wellness brand
+          publishes those five words, so the panel now carries the refusals behind
+          them instead, and the words themselves sit quietly under the closing
+          statement where they read as a summary rather than as a claim. */}
+      <NotThis />
 
-      <section className="py-24 md:py-32">
-        <Container>
+      <section className="pt-4 pb-24 md:pb-32">
+        <Container className="flex flex-col gap-12">
           <Reveal>
             <p className="display max-w-[20ch] text-[clamp(2.25rem,5vw,4rem)] text-forest-deep">
               Honest products. Transparent practices.{" "}
               <Highlighter padding={6}>Better lives naturally.</Highlighter>
             </p>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <ul className="flex flex-wrap items-baseline gap-x-8 gap-y-2 border-t border-sage-line pt-8">
+              {values.map((value) => (
+                <li key={value} className="eyebrow text-botanical-ink">
+                  {value}
+                </li>
+              ))}
+            </ul>
           </Reveal>
         </Container>
       </section>

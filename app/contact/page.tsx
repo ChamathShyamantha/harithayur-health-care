@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { ConsultationForm } from "@/components/contact/ConsultationForm";
+import { ConsultPath } from "@/components/contact/ConsultPath";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { Reveal } from "@/components/motion/Reveal";
 import { siteConfig } from "@/data/site";
@@ -33,9 +34,12 @@ export default function ContactPage() {
   return (
     <>
       <PageHeader
+        eyebrow="Contact"
         heading="Let's begin your wellness journey."
         description="Have a question, need guidance, or want to understand which Ayurvedic remedy is right for you?"
       />
+
+      <ConsultPath />
 
       <section className="py-16 md:py-24">
         <Container>
