@@ -337,23 +337,31 @@ body {
   }
 }
 
-/* Dosha arcs draw themselves as the wheel scrolls in. */
-@keyframes arc-draw {
-  from {
-    stroke-dashoffset: var(--arc-len, 400);
-  }
+/* The dosha wheel turns continuously. The markers orbit with their own arc, so
+   the colour stays tied to the name, and each marker counter-rotates at the same
+   duration so its text stays upright the whole way round. */
+@keyframes wheel-turn {
   to {
-    stroke-dashoffset: var(--arc-gap, 120);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes wheel-turn-counter {
+  to {
+    transform: rotate(-360deg);
   }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .arc {
-      animation: arc-draw linear both;
-      animation-timeline: view();
-      animation-range: entry 10% cover 42%;
-    }
+  .wheel-orbit {
+    animation: wheel-turn 48s linear infinite;
+    transform-origin: 50% 50%;
+    will-change: transform;
+  }
+
+  .wheel-orbit-upright {
+    animation: wheel-turn-counter 48s linear infinite;
+    transform-origin: 50% 50%;
   }
 }
 
