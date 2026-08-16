@@ -10,7 +10,7 @@ import { Reveal } from "@/components/motion/Reveal";
 export function InsightsGrid({ articles }: { articles: Article[] }) {
   if (articles.length === 0) {
     return (
-      <div className="flex flex-col items-start gap-5 rounded-plush border border-border-subtle bg-sage-deep px-8 py-16">
+      <div className="flex flex-col items-start gap-5 rounded-plush border border-border-subtle bg-sage-deep px-6 py-14 sm:px-8 sm:py-16">
         <h3 className="display text-3xl text-forest-deep">New writing is on the way</h3>
         <p className="max-w-[46ch] text-sm leading-relaxed text-text-muted">
           Our practitioners are preparing the next set of Ayurvedic insights. In

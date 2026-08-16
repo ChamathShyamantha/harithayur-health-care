@@ -23,14 +23,18 @@ export function HeritageBand() {
             />
           </div>
 
-          <Reveal className="relative mx-auto -mt-16 w-[92%] rounded-plush bg-warm-white p-8 shadow-[0_20px_50px_rgba(18,59,34,0.14)] md:-mt-24 md:w-[70%] md:p-12 lg:ml-0 lg:mr-auto lg:w-[54%]">
+          {/* The overlap is a fraction of the image, and on a phone the capsule is
+              only ~190px tall — a flat -mt-16 there buried two thirds of it. */}
+          <Reveal className="relative mx-auto -mt-10 w-[92%] rounded-plush bg-warm-white p-7 shadow-[0_20px_50px_rgba(18,59,34,0.14)] sm:-mt-16 sm:p-8 md:-mt-24 md:w-[70%] md:p-12 lg:ml-0 lg:mr-auto lg:w-[54%]">
             <p className="display text-[clamp(1.5rem,2.8vw,2.25rem)] text-forest-deep">
               Every formulation begins the way it did four generations ago. Herbs
               are identified by hand, ground by hand, and{" "}
+              {/* The full stop sits inside the annotation. Highlighter renders an
+                  inline-block, which fills the line at narrow widths and left a
+                  bare "." stranded on a line of its own on every phone. */}
               <Highlighter action="underline" strokeWidth={2}>
-                blended to the person in front of us
+                blended to the person in front of us.
               </Highlighter>
-              .
             </p>
             <p className="mt-6 max-w-[46ch] text-sm leading-relaxed text-text-muted">
               Hela Wedakama is Sri Lanka&apos;s own healing tradition, older than

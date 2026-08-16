@@ -13,7 +13,7 @@ export function ArticleDetail({ article }: { article: Article }) {
       <Container>
         <Link
           href="/insights"
-          className="focus-ring mb-12 inline-flex items-center gap-2 rounded-soft text-[0.8125rem] text-text-muted transition-colors duration-200 hover:text-botanical"
+          className="focus-ring mb-10 inline-flex items-center gap-2 rounded-soft py-2 text-[0.8125rem] text-text-muted transition-colors duration-200 hover:text-botanical"
         >
           <ArrowLeft size={15} aria-hidden />
           All insights

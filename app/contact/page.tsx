@@ -56,7 +56,9 @@ export default function ContactPage() {
                       {item.href ? (
                         <a
                           href={item.href}
-                          className="focus-ring rounded-soft transition-colors duration-200 hover:text-botanical"
+                          /* A phone number is the one link on this page most
+                             likely to be tapped, and at 24px it was the smallest. */
+                          className="focus-ring -my-1 inline-block rounded-soft py-1 transition-colors duration-200 hover:text-botanical"
                         >
                           {item.value}
                         </a>

@@ -89,7 +89,7 @@ export function DoshaWheel() {
 
               <Link
                 href="/insights/understanding-your-dosha"
-                className="focus-ring mt-2 inline-flex items-center gap-2 rounded-pill text-[0.8125rem] font-semibold text-forest-deep transition-all duration-200 hover:gap-3 hover:text-botanical"
+                className="focus-ring mt-1 inline-flex items-center gap-2 rounded-pill py-2 text-[0.8125rem] font-semibold text-forest-deep transition-all duration-200 hover:gap-3 hover:text-botanical"
               >
                 Read the guide to your dosha
                 <ArrowRight size={15} aria-hidden />

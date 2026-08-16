@@ -77,7 +77,9 @@ const STAGES = [
 export function PreparationLadder() {
   return (
     <section className="border-b border-sage-line py-20 md:py-28">
-      <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
+      {/* Narrower than Container by design, but the gutters have to match it at
+          every breakpoint or this section steps in and out of the page's edge. */}
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 md:px-10">
         <Reveal className="flex max-w-[52ch] flex-col items-start gap-5">
           <span className="eyebrow">From root to remedy</span>
           <h2 className="display text-[clamp(2rem,3.6vw,3rem)] text-forest-deep">

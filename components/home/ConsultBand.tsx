@@ -12,7 +12,7 @@ export function ConsultBand() {
   return (
     <section className="py-20 md:py-28">
       <Container>
-        <div className="surface-dark relative isolate overflow-hidden rounded-plush bg-forest px-8 py-16 text-warm-white md:px-14 md:py-20">
+        <div className="surface-dark relative isolate overflow-hidden rounded-plush bg-forest px-6 py-14 text-warm-white sm:px-8 sm:py-16 md:px-14 md:py-20">
           {/* Leaf texture keeps the flat green panel from reading as a plain block. */}
           <Image
             src="/assets/texture-botanical.webp"

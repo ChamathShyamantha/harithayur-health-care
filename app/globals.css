@@ -81,6 +81,10 @@
    lesser cost. */
 html {
   background: var(--color-sage);
+  /* Landscape rotation on iOS otherwise inflates body copy on its own, which
+     breaks every measure the page sets in ch. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* No background on body. In the root stacking context a block-level background
@@ -92,6 +96,10 @@ body {
   color: var(--color-text-dark);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  /* The site's own hover and active states already answer a tap. The default
+     grey flash fires on top of them and lands as a rectangle over shapes that
+     are pills, arches and circles everywhere else. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 ::selection {

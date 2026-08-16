@@ -21,12 +21,16 @@ export function TrustBand() {
   return (
     <section aria-label="Credentials" className="pb-16 md:pb-24">
       <Container>
-        <dl className="flex flex-wrap justify-center gap-3 md:gap-4">
+        {/* Below sm the four pills stack, so they run full width and align on one
+            left edge. Left to wrap freely they centred themselves at four
+            different content widths, which read as a broken list rather than a
+            row of credentials. */}
+        <dl className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center md:gap-4">
           {credentials.map(({ icon: Icon, motion, value, label }, index) => (
             <Reveal
               key={label}
               delay={index * 0.07}
-              className="flex items-center gap-3.5 rounded-pill bg-sage-deep py-3.5 pl-3.5 pr-6 md:pr-7"
+              className="flex w-full items-center gap-3.5 rounded-pill bg-sage-deep py-3.5 pl-3.5 pr-6 sm:w-auto md:pr-7"
             >
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-forest text-lichen">
                 <Icon size={19} weight="duotone" className={motion} aria-hidden />
@@ -35,7 +39,7 @@ export function TrustBand() {
                 <dt className="display text-2xl leading-none text-forest md:text-[1.75rem]">
                   {value}
                 </dt>
-                <dd className="mt-1 max-w-[11rem] text-[0.8125rem] leading-snug text-text-muted">
+                <dd className="mt-1 text-[0.8125rem] leading-snug text-text-muted sm:max-w-[11rem]">
                   {label}
                 </dd>
               </span>

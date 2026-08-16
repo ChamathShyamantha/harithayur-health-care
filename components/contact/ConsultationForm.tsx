@@ -23,8 +23,13 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // Inputs sit on --color-ink so they read as wells cut into the panel rather than
 // pale boxes floating on it. Bone text on ink clears AA comfortably.
+//
+// 16px below sm, 14px above. iOS Safari zooms the viewport when a field smaller
+// than 16px takes focus, and it does not zoom back out — a visitor who taps Name
+// is left on a magnified, sideways-scrolling page for the rest of the form. The
+// value only has to hold at the widths a phone actually uses.
 const inputClasses =
-  "w-full rounded-soft border border-border-subtle bg-warm-white px-4 py-3 text-sm text-forest-deep placeholder:text-text-muted/70 transition-colors duration-200 focus:border-forest focus:outline-none focus:ring-1 focus:ring-forest/25 aria-[invalid=true]:border-wood";
+  "w-full rounded-soft border border-border-subtle bg-warm-white px-4 py-3 text-base text-forest-deep placeholder:text-text-muted/70 transition-colors duration-200 focus:border-forest focus:outline-none focus:ring-1 focus:ring-forest/25 aria-[invalid=true]:border-wood sm:text-sm";
 
 const fieldOrder: (keyof FormValues)[] = ["name", "email", "phone", "subject", "message"];
 
@@ -86,7 +91,7 @@ export function ConsultationForm() {
         ref={confirmationRef}
         role="status"
         tabIndex={-1}
-        className="focus-ring flex flex-col items-start gap-4 rounded-soft border border-border-subtle bg-warm-white p-10"
+        className="focus-ring flex flex-col items-start gap-4 rounded-soft border border-border-subtle bg-warm-white p-7 sm:p-10"
       >
         <CheckCircle size={40} weight="fill" className="text-botanical" aria-hidden />
         <h3 className="display text-2xl text-forest-deep">Thank you</h3>
@@ -206,7 +211,11 @@ export function ConsultationForm() {
 
       <button
         type="submit"
-        className="focus-ring mt-2 inline-flex w-fit items-center justify-center rounded-soft bg-forest px-8 py-3.5 text-[0.8125rem] font-medium tracking-[0.02em] text-forest-deep transition-colors duration-300 ease-out hover:bg-forest-deep active:scale-[0.99]"
+        /* Full width below sm: a submit button is the one control on the page a
+           thumb must not miss, and w-fit left it as a 150px target adrift in the
+           panel. text-warm-white, not text-forest-deep — the label was set in the
+           same forest green as the fill it sits on. */
+        className="focus-ring mt-2 inline-flex w-full items-center justify-center rounded-soft bg-forest px-8 py-3.5 text-[0.8125rem] font-medium tracking-[0.02em] text-warm-white transition-colors duration-300 ease-out hover:bg-forest-deep active:scale-[0.99] sm:w-fit"
       >
         Send Message
       </button>

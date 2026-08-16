@@ -63,12 +63,15 @@ export function Footer() {
 
           <nav aria-label="Footer navigation">
             <h2 className="eyebrow mb-6 text-lichen">Explore</h2>
-            <ul className="flex flex-col gap-3">
+            {/* py-2 rather than a larger gap: the links keep their vertical rhythm
+                but each one carries a 36px hit area, which is a thumb target
+                rather than a 20px line of text. */}
+            <ul className="flex flex-col gap-1">
               {footerQuickLinks.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="focus-ring inline-block rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-lichen"
+                    className="focus-ring inline-block rounded-pill py-2 text-sm text-warm-white/75 transition-colors duration-200 hover:text-lichen"
                   >
                     {item.label}
                   </Link>
@@ -79,12 +82,12 @@ export function Footer() {
 
           <nav aria-label="Company links">
             <h2 className="eyebrow mb-6 text-lichen">Company</h2>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-1">
               {footerCompanyLinks.map((item) => (
                 <li key={item.label}>
                   <Link
                     href={item.href}
-                    className="focus-ring inline-block rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-lichen"
+                    className="focus-ring inline-block rounded-pill py-2 text-sm text-warm-white/75 transition-colors duration-200 hover:text-lichen"
                   >
                     {item.label}
                   </Link>
@@ -100,13 +103,13 @@ export function Footer() {
             </p>
             <a
               href={`tel:${siteConfig.contact.whatsappNumber}`}
-              className="focus-ring rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-lichen"
+              className="focus-ring -my-1 rounded-pill py-2 text-sm text-warm-white/75 transition-colors duration-200 hover:text-lichen"
             >
               {siteConfig.contact.whatsappDisplay}
             </a>
             <a
               href={`mailto:${siteConfig.contact.email}`}
-              className="focus-ring rounded-pill text-sm text-warm-white/75 transition-colors duration-200 hover:text-lichen"
+              className="focus-ring -my-1 rounded-pill py-2 text-sm text-warm-white/75 transition-colors duration-200 hover:text-lichen"
             >
               {siteConfig.contact.email}
             </a>
@@ -121,16 +124,16 @@ export function Footer() {
             &copy; {new Date().getFullYear()} {siteConfig.name}. All rights
             reserved.
           </p>
-          <div className="flex items-center gap-6">
+          <div className="-my-2 flex items-center gap-6">
             <Link
               href="/privacy-policy"
-              className="focus-ring rounded-pill transition-colors duration-200 hover:text-lichen"
+              className="focus-ring rounded-pill py-2 transition-colors duration-200 hover:text-lichen"
             >
               Privacy Policy
             </Link>
             <Link
               href="/terms-of-service"
-              className="focus-ring rounded-pill transition-colors duration-200 hover:text-lichen"
+              className="focus-ring rounded-pill py-2 transition-colors duration-200 hover:text-lichen"
             >
               Terms of Service
             </Link>

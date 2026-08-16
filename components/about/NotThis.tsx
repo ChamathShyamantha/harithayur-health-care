@@ -40,7 +40,7 @@ export function NotThis() {
   return (
     <section className="py-20 md:py-28">
       <Container>
-        <div className="surface-dark rounded-plush bg-forest-deep px-8 py-16 md:px-14 md:py-20">
+        <div className="surface-dark rounded-plush bg-forest-deep px-6 py-14 sm:px-8 sm:py-16 md:px-14 md:py-20">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <Reveal className="flex flex-col items-start gap-5 lg:col-span-4">
               <span className="eyebrow text-lichen">Where we draw the line</span>
