@@ -33,12 +33,14 @@ export function ConsultBand() {
               className="flex flex-col items-start gap-6 lg:col-span-5"
             >
               <p className="max-w-[42ch] text-[0.9375rem] leading-relaxed text-warm-white/75">
-                Tell us what you are dealing with. One of our practitioners will
-                read it properly and recommend where to start.
+                Tell us what you are dealing with. Dr. Rasanjana Ilangkoon reads
+                these personally and will recommend where to start.
               </p>
               <div className="flex flex-col gap-3">
                 <WhatsAppButton label="Consult on WhatsApp" variant="onDark" />
+                {/* The name is the reassurance; the hours say when to expect it. */}
                 <span className="text-[0.8125rem] text-warm-white/65">
+                  Degree in Ayurveda, University of Kelaniya ·{" "}
                   {siteConfig.contact.businessDays},{" "}
                   {siteConfig.contact.businessHours}
                 </span>

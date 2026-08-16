@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { Highlighter } from "@/components/ui/Highlighter";
 import { NotThis } from "@/components/about/NotThis";
+import { Practitioner } from "@/components/about/Practitioner";
 
 export const metadata: Metadata = {
   title: { absolute: "About Harithayur | Rooted in Ayurvedic Tradition" },
@@ -93,6 +94,10 @@ export default function AboutPage() {
           </dl>
         </Container>
       </section>
+
+      {/* Placed after the introduction and before the heritage: a reader wants to
+          know what this is, then who is behind it, then where it came from. */}
+      <Practitioner />
 
       <section
         id="heritage"

@@ -20,7 +20,7 @@ import { siteConfig } from "@/data/site";
  */
 const STEPS = [
   {
-    title: "A practitioner reads it",
+    title: "Dr. Rasanjana Ilangkoon reads it",
     body: "Not a queue and not an auto-reply. The person who answers is the person who prepares the remedies.",
     meta: "Same working day",
   },
