@@ -587,6 +587,113 @@ body::before {
   }
 }
 
+/* --- The closing wordmark -------------------------------------------------
+   The oversized name that ends the page used to sit there fully drawn at 10%
+   white, which on forest-deep is close enough to the ground that it read as a
+   printing artefact rather than as the last thing the page says. It now sets
+   itself: the letters rise one after another as the footer scrolls up, and the
+   hairline draws in left to right beneath them.
+
+   Every letter runs the same keyframes and differs only in where its range
+   sits, which is the whole of the stagger — --letter-from and --letter-to are
+   set per letter in Footer.tsx. Both ends move together, so a letter early in
+   the word takes exactly as long as a letter late in it; a fixed end would have
+   made the H drift up over twice the scroll distance the final R gets, and the
+   cascade would read as uneven rather than as a sequence.
+
+   One named timeline on the block rather than view() on each part, so the
+   letters and the rule below them are measured against the same box. The rule
+   is a 1px span: on its own timeline its entire entry phase would pass in a
+   pixel of scroll and it would snap rather than draw.
+
+   Base state is the settled state. With no timeline support, and under reduced
+   motion, the wordmark is simply there — nothing here can leave it blank.
+-------------------------------------------------------------------------- */
+@keyframes wordmark-letter-in {
+  from {
+    opacity: 0;
+    /* em, so the rise stays proportional across the clamp's 3.5rem to 11rem. */
+    transform: translateY(0.26em) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes wordmark-rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .wordmark {
+      view-timeline-name: --wordmark;
+    }
+
+    .wordmark-letter {
+      animation: wordmark-letter-in linear both;
+      animation-timeline: --wordmark;
+      animation-range: entry var(--letter-from, 0%) entry var(--letter-to, 85%);
+    }
+
+    .wordmark-rule {
+      animation: wordmark-rule-draw linear both;
+      animation-timeline: --wordmark;
+      /* Trails the last letter, so the rule closes the sequence. */
+      animation-range: entry 20% entry 92%;
+    }
+  }
+}
+
+/* --- The preparation stolon -----------------------------------------------
+   The line the five stages sit on. PreparationLadder sets pathLength={1} on
+   the path so the dash maths is normalised and the stem can draw itself left
+   to right regardless of the path's real length — but the rule that does the
+   drawing was never written, so the stem has been painting fully formed. This
+   is it.
+
+   The timeline is named off the wrapping block rather than taken from the path
+   itself. An SVG child has no CSS box for a view timeline to measure, so
+   `view()` on the path produces a timeline that never advances — the dashes
+   apply and the stem then sits fully drawn, which is exactly the bug this rule
+   was meant to fix. The wrapper is also the right subject anyway: the stem
+   should draw across the five stages, and the stages are what it spans.
+
+   dasharray only, no dashoffset, outside the animation: an offset in the base
+   state would hide the stem outright everywhere the timeline is unsupported.
+   The keyframes carry the offset instead, and `both` applies the from-state
+   before the range opens.
+-------------------------------------------------------------------------- */
+@keyframes stem-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .ladder {
+      view-timeline-name: --ladder;
+    }
+
+    .ladder-stem {
+      stroke-dasharray: 1;
+      animation: stem-draw linear both;
+      animation-timeline: --ladder;
+      animation-range: entry 15% entry 85%;
+    }
+  }
+}
+
 /* Section that curves up over the one before it. */
 .curve-top {
   border-top-left-radius: clamp(2.5rem, 6vw, 5rem);

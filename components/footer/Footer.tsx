@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FacebookLogo, InstagramLogo, YoutubeLogo } from "@phosphor-icons/react/dist/ssr";
@@ -16,11 +17,39 @@ export function Footer() {
     <footer className="surface-dark curve-top mt-4 bg-forest-deep text-warm-white/90">
       <Container>
         {/* Oversized wordmark closes the page. Cheaper than another band, and it is the
-            last thing the eye holds. */}
-        <div className="border-b border-warm-white/10 py-14 md:py-16">
-          <p className="display text-[clamp(3.5rem,13vw,11rem)] leading-[0.85] text-warm-white/10">
-            {siteConfig.name}
+            last thing the eye holds — so it arrives rather than sitting there. The
+            letters set themselves one after another as the footer scrolls up and the
+            rule draws in beneath them; see the closing wordmark block in globals.css.
+
+            Split per letter and hidden from assistive tech. The name is already
+            announced by the logo link directly below, and a screen reader handed ten
+            inline-block spans will sometimes spell a word out one letter at a time. */}
+        <div className="wordmark relative py-14 md:py-16">
+          <p
+            aria-hidden
+            className="display text-[clamp(3.5rem,13vw,11rem)] leading-[0.85] text-warm-white/[0.18]"
+          >
+            {[...siteConfig.name].map((letter, index) => (
+              <span
+                key={`${letter}-${index}`}
+                className="wordmark-letter inline-block"
+                style={
+                  {
+                    "--letter-from": `${index * 5}%`,
+                    "--letter-to": `${index * 5 + 40}%`,
+                  } as CSSProperties
+                }
+              >
+                {letter}
+              </span>
+            ))}
           </p>
+          {/* Was a border-b. A border cannot be drawn on, so it is a span that
+              scales from its left edge instead. */}
+          <span
+            aria-hidden
+            className="wordmark-rule absolute inset-x-0 bottom-0 h-px origin-left bg-warm-white/10"
+          />
         </div>
 
         <div className="grid gap-12 py-14 md:grid-cols-2 lg:grid-cols-4 lg:gap-10">

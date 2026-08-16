@@ -92,7 +92,9 @@ export function PreparationLadder() {
           </p>
         </Reveal>
 
-        <div className="relative mt-16 md:mt-24">
+        {/* `ladder` names the view timeline the stem draws against — see the
+            preparation stolon block in globals.css. */}
+        <div className="ladder relative mt-16 md:mt-24">
           {/* The stolon the stages sit on. Desktop only: stacked on mobile the
               stages already read top to bottom without a line to carry them. */}
           <svg
