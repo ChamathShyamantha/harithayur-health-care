@@ -35,7 +35,10 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     url: siteConfig.url,
     siteName: siteConfig.name,
-    images: ["/assets/hero-ayurvedic-mortar.webp"],
+    /* Landscape, because social cards crop hard to about 1.91:1 and the old
+       portrait hero lost most of its subject. This one is also free of the
+       lettering that got baked into the pixels of the original hero shot. */
+    images: ["/assets/remedy-shelf.webp"],
     locale: "en_US",
     type: "website",
   },

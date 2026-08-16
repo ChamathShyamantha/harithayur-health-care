@@ -100,11 +100,17 @@ export function Hero() {
                 </g>
               </svg>
 
-              {/* The aperture itself. */}
+              {/* The aperture itself.
+                  A view through a doorway into the dispensary rather than a still
+                  life of one object: the aperture opens on load, so what it opens
+                  onto should be somewhere you could walk into. The source arrived
+                  with its own arch mask baked into the pixels, tangent to this
+                  circle to within a pixel, so it is cropped 26px to keep the pale
+                  mask from showing as a rim inside the crop. */}
               <div className="absolute inset-[9%] overflow-hidden rounded-full bg-sage-deep shadow-[0_30px_70px_rgba(14,47,20,0.22)]">
                 <Image
-                  src="/assets/hero-ayurvedic-mortar.webp"
-                  alt="A traditional wooden mortar and pestle holding freshly ground green herbs, with roots and leaves alongside"
+                  src="/assets/hero-threshold.webp"
+                  alt="Looking through an archway into an Ayurvedic dispensary: herbs drying overhead, rows of amber jars on wooden shelves, and a stone mortar of freshly ground herbs on the bench"
                   fill
                   priority
                   sizes="(min-width: 1024px) 52vw, 92vw"
