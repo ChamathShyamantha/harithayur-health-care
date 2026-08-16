@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero/Hero";
 import { TrustBand } from "@/components/home/TrustBand";
 import { BenefitsStrip } from "@/components/home/BenefitsStrip";
 import { HeritageBand } from "@/components/home/HeritageBand";
+import { BeautyBand } from "@/components/home/BeautyBand";
 import { ConsultBand } from "@/components/home/ConsultBand";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -20,8 +21,11 @@ export const metadata: Metadata = {
 
 /**
  * Layout families in order, no repeats: asymmetric hero, hairline credential band,
- * bento, asymmetric product feature, full-bleed media, offset editorial pair,
- * accent closing band. Two eyebrows across seven sections.
+ * bento, turning wheel, medallion row, herbarium sheets, full-bleed media, offset
+ * editorial pair, accent closing band.
+ *
+ * The beauty band sits with the remedies rather than after the heritage story,
+ * because hair and skin is a second product range and not a second narrative.
  */
 export default function HomePage() {
   return (
@@ -42,6 +46,8 @@ export default function HomePage() {
           <RemedyMedallions products={products} />
         </Container>
       </section>
+
+      <BeautyBand />
 
       <HeritageBand />
 
